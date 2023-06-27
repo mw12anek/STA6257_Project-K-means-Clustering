@@ -12,7 +12,7 @@ bibliography: references.bib # file contains bibtex for references
 
 ## Introduction
 
-statistics. In kernel estimator, weight function is known as kernel function [@efr2008]. Cite this paper [@bro2014principal].
+
 
 
 ## Methods
