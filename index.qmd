@@ -1,6 +1,6 @@
 ---
 title: "Stocks K-Means Clustering "
-author: "Michael Wanek and Woodny Dorceans"
+author: "Michael Wanek, Woodny Dorceans"
 date: '`r Sys.Date()`'
 format:
   html:
@@ -10,64 +10,80 @@ bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
 ---
 
+## Literature Review
+The k-means clustering algorithm is an unsupervised machine learning algorithm due to its used of grouping similar unlabelled data points into groups. one of the article review focuses on four of the k value, such as the elbow method, gap statistic, silhouette coefficient, and canopy. The k-value method which stood out is the silhouette coefficient one, which looks at the cohesiveness between the cluster. The article then used the Iris dataset to provide evidence of their experiment. They applied the mentioned four k value algorithm and evaluated the results. Based on the results, the canopy was less effective when choosing the k value. This article also provides the different advantages of the four algorithms. After clustering the data, supervised learning can potentially take place. For example, the Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. However, when the dimensions are very high, the Cosine method works better. The Cosine method is the cosine of the angle between any two points with the origin at its vertex. It is then calculated by dividing the dot product of any two vectors by the product of the vector magnitudes. The Manhattan distance measures the right angle along the “x” and “y” axis. This is essentially the sum of the absolute value of the differences between two coordinates. The Hamming distance takes into consideration the number of coordinates differing from each other.
+The textbook discusses how “R” is used in the context of K-means clustering. There are several steps involved including random coordinates on the scatterplot as the initial cluster centers named “k1” and “k2” for a two-cluster analysis. Next, the number of iterations needs to be determined such that the centers of the data stop changing significantly after each iteration. Then the Euclidean distance, if that is the selected methodology, will be used by applying the square root function as “sqrt()” in R. Each point must be assigned to the cluster whose center it is closest to. Then, the mean function, “mean()”, can be used to obtain the mean x and y coordinates of the points for each cluster. Another scatterplot can be used to visually identify clusters using different colors. From there, one can determine if the algorithm was successful in generating a useful analysis.
+ 
+ 
+K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock (Soofi et al., 2015). Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. One can consider ‘crisp clusters’ where data belongs to only one cluster, or ‘fuzzy clustering’ where data can belong to more than one cluster. Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. One of the articles reviewed proposed resolution for the fact that there is a need for better initial centroids, and the way to do so is by sorting the data points distance-wise and separating them into equal sets. The authors believe partitioning the data in a sorted method leads to better results. The authors then reassign the data points to the correct clusters by looking at the distance between the centroid to whichever cluster is closest. We also see in this article that the authors address the time complexity involved with k-means clustering. The proposed method uses a heap sort method, which is O(nlogn); combining that with the time complexity, we still see that time complexity is O(nlogn) on average. This confirms that the proposed method in this article is more efficient than the original k-means clustering. The experimental results also corroborate this. The articles provides an overview of KMC, challenges/limitations of the algorithm, and analysis of stocks using k-means with the results. The articles reviewed explore various aspects, including data selection, methodology, optimization techniques, and the impact of different factors on stock prices. 
+
+
+Through the use of data mining technology, large amounts of complex financial data can be analyzed. KMC can be used to classify financial features according to maximum and minimum similarity. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum. The study utilized the ‘artificial fish swarm algorithm’ to correct for these shortcomings. The data included 100 financial companies analyzing the following data: closing price, price earnings ratio, earnings-per-share, return on net assets, per share provident fund, and net assets per share. The data that was extracted with relation to KMC included the convergence time, standard deviation, and silhouette coefficient. The silhouette coefficient for this dataset was 0.63 and results that are close to 1 demonstrate better clustering performance. Additionally, the stock clustering results were placed into 2 categories: poor performance versus high-performance stock. In general, stocks that were deemed high-performance had significantly higher closing prices, higher price earnings ratios, high earnings-per-share, and high return on net assets. The paper demonstrated that the classification of stocks could assist investors in making selections improving investment performance. This journal article analyzed the monthly rate of return of banks using the K-means clustering algorithm. Specifically, a clustering approach was used to understand and identify stock market price movement patterns as a result of macro economic indicators. Simultaneously, the clustering method was used to provide a perspective on optimizing investment returns with respect to the banking sector. The data that was analyzed included monthly prices on the stock market index of the banking sector in Indonesia, the reference rate from the Central Bank of Indonesia, the US dollar to the rupiah exchange rate, the inflation rate, and the consumer price index. By using the K-means clustering method, the goal was to find homogeneous subgroups within the data whose points were as close as possible according to each cluster. This was accomplished by using that Euclidean distance thereby minimizing the paired squared deviations of points within the same cluster. In this case, three clusters were determined based on the average rate of return as follows: lower, middle, and upper. The analysis found that the cluster centers were located at 0.010, 0.014, and 0.178. Also, it was found that interest rates negatively affected the stock prices. Additionally, strengthening of the US dollar against the rupiah increased the banking stocks in the middle upper cluster. With respect to inflation, it negatively impacted the lower cluster, and insignificant impact on the middle cluster, and a positive impact on the upper cluster. As a result, the study concluded that the K-means clustering method can assist in optimizing returns considering each analyzed cluster. In essence, the middle cluster was more reactive with respect to interest and exchange rates, and the upper cluster was reactive to inflation. 
+
+The article looked at different methods, starting with classification, prediction, and clustering. When looking at classification, it defines the classes by using models. The classification is then used to predict any data that is not available or for missing values. The article then touches on the challenges with classification. The k-means cluster in this article was used to create sub-clusters and leveraged purity thresholds to prevent problems. Reviewing the effectiveness of the cluster method, companies were grouped based on information from their annual financial reports. Based on the results, the best information to help predict future stock prices was found using their qualitative piece of the annual report. The author proposes a method to see which companies are more profitable, which would lead to purchasing the best stock. The article does look at different types of techniques and research completed by others. The authors reviewed the portioning, density-based, hierarchical, and model-based techniques which were then validated by using the index of each technique. As a result of those validations, the partitioning based on k-means and model-based techniques performed the best. The authors also combine regression methods to the predictive piece of the model. Once the authors determined the companies based on the clustering technique, they used the regression method to predict future stock prices. This article does help both buyers and sellers with their prediction since their method will tell buyers the best time to get in the market before a price increase and, in turn, tell sellers to either hold or sell if prices will be lowered. In the article, we also saw results for the TCS company, which shows the stock price doubling in the future.
+
+The final article explained the problem of stock market investors who make psychologically-based or cognitively biased decisions when making stock picks. As part of the analysis, K-means clustering was used to separate investor groups into their behaviors using the subgroups of market experience, invested amount, age, and market perception. This was performed using the “R” software analysis tool. As an additional tool to assist in creating the clusters of data, the silhouette statistic was used to determine if the centroid of the clusters were of appropriate distance. The K-means clusters were visualized in two-dimensional space which helped determine the optimal number of clusters as k=3. The Euclidean distance was used for this K-means clustering method. The cluster groups were as follows:
+1.	confirmation bias and investment amount;
+2.	age, gender, and economic assessment;
+3.	biases such as bandwagon, billability, loss aversion, hot hand, gamblers, and Dunning-Kruger combined with investment experience.
+It was found that loss aversion bias, experience, and gamblers bias were the greatest influential factors. The least influential factors were age, gender, and perception of economy. However, other statistical tests that were utilized in this study found that age was a significant factor in risk-taking. Therefore, from an empirical perspective, multiple methods should be used to help discern how bias affects investment decision-making in the stock market.
+
 ## Introduction
-
-
-
 
 ## Methods
 
 
-The common non-parametric regression model is $Y_i = m(X_i) + \varepsilon_i$, where
-$Y_i$ can be defined as the sum of the regression function value $m(x)$ for $X_i$.
-Here $m(x)$ is unknown and $\varepsilon_i$ some errors. With the help of this definition, we can create the estimation for
-local averaging i.e. $m(x)$ can be estimated with the product of $Y_i$ average
-and $X_i$ is near to $x$. In other words, this means that we are discovering
-the line through the data points with the help of surrounding data points.
-The estimation formula is printed below [@R-base]:
+$$
 
 $$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$
-$W_n(x)$ is the sum of weights that belongs to all real numbers. Weights
-are positive numbers and small if $X_i$ is far from $x$.
 
-## Analysis and Results
-### Data and Vizualisation
-A study was conducted to determine how...
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
+
 ```
 
 
 ```{r, warning=FALSE, echo=TRUE}
-# Load Data
-kable(head(murders))
 
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
-
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_wsj()
   
-
 ```
+
+### Analysis and Results
 
 ### Statistical Modeling
 
 ### Conlusion
 
 ## References
+Ahmed, M., Seraj, R., & Islam, S. M. S. (2020). The k-means algorithm: A comprehensive survey and performance evaluation. Electronics, 9(8), 1295.
+
+Babu, M. S., Geethanjali, N., & Satyanarayana, B. (2012). Clustering approach to stock market prediction. International Journal of Advanced Networking and Applications, 3(4), 1281.
+
+Bini, B. S., & Mathew, T. (2016). Clustering and regression techniques for stock prediction. Procedia Technology, 24, 1248-1255.
+
+Fang, &amp; Chiao, C. (2021). Research on prediction and recommendation of financial stocks based
+on K-means clustering algorithm optimization. Journal of Computational Methods in Sciences
+and Engineering, 21(5), 1081–1089. https://doi.org/10.3233/JCM-204716
+
+Malik, &amp; Tuckfield, B. (2019). Applied unsupervised learning with R: Uncover hidden
+relationships and patterns with K-Means clustering, hierarchical clustering, and PCA (1st
+edition). Packt Publishing Ltd.
+
+Ossareh, Pourjafar, M. S., &amp; Kopczewski, T. (2021). Cognitive Biases on the Iran Stock
+Exchange: Unsupervised Learning Approach to Examining Feature Bundles in Investors’
+Portfolios. Applied Sciences, 11(22), 10916–. https://doi.org/10.3390/app112210916
+
+Soofi , Mohseni , M., &amp; Momeni , M. (2015). Clustering Stock Market Companies via K- Means
+Algorithm. Kuwait Chapter of Arabian Journal of Business &amp; Management Review, 4(5), 1–10.
+https://doi.org/10.12816/0018959
+
+Yedla, M., Pathakota, S. R., & Srinivasa, T. M. (2010). Enhancing K-means clustering algorithm with improved initial center. International Journal of computer science and information technologies, 1(2), 121-125.
+
+Yuan, C., & Yang, H. (2019). Research on K-value selection method of K-means clustering algorithm. J, 2(2), 226-235.
+
+Zuhroh, Rofik, M., &amp; Echchabi, A. (2021). Banking stock price movement and
+macroeconomic indicators: k-means clustering approach. Cogent Business &amp; Management,
+8(1), 1–10. https://doi.org/10.1080/23311975.2021.1980247
+
+
+

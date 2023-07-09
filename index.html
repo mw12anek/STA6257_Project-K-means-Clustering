@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michael Wanek and Woodny Dorceans">
-<meta name="dcterms.date" content="2023-06-27">
+<meta name="author" content="Michael Wanek, Woodny Dorceans">
+<meta name="dcterms.date" content="2023-07-09">
 
 <title>Stocks K-Means Clustering</title>
 <style>
@@ -21,88 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
-}
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
 }
 </style>
 
@@ -118,7 +36,6 @@ div.csl-indent {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -140,14 +57,14 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Michael Wanek and Woodny Dorceans </p>
+             <p>Michael Wanek, Woodny Dorceans </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 27, 2023</p>
+      <p class="date">July 9, 2023</p>
     </div>
   </div>
     
@@ -156,114 +73,29 @@ div.csl-indent {
 
 </header>
 
+<section id="literature-review" class="level2">
+<h2 class="anchored" data-anchor-id="literature-review">Literature Review</h2>
+<p>The k-means clustering algorithm is an unsupervised machine learning algorithm due to its used of grouping similar unlabelled data points into groups. one of the article review focuses on four of the k value, such as the elbow method, gap statistic, silhouette coefficient, and canopy. The k-value method which stood out is the silhouette coefficient one, which looks at the cohesiveness between the cluster. The article then used the Iris dataset to provide evidence of their experiment. They applied the mentioned four k value algorithm and evaluated the results. Based on the results, the canopy was less effective when choosing the k value. This article also provides the different advantages of the four algorithms. After clustering the data, supervised learning can potentially take place. For example, the Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. However, when the dimensions are very high, the Cosine method works better. The Cosine method is the cosine of the angle between any two points with the origin at its vertex. It is then calculated by dividing the dot product of any two vectors by the product of the vector magnitudes. The Manhattan distance measures the right angle along the “x” and “y” axis. This is essentially the sum of the absolute value of the differences between two coordinates. The Hamming distance takes into consideration the number of coordinates differing from each other. The textbook discusses how “R” is used in the context of K-means clustering. There are several steps involved including random coordinates on the scatterplot as the initial cluster centers named “k1” and “k2” for a two-cluster analysis. Next, the number of iterations needs to be determined such that the centers of the data stop changing significantly after each iteration. Then the Euclidean distance, if that is the selected methodology, will be used by applying the square root function as “sqrt()” in R. Each point must be assigned to the cluster whose center it is closest to. Then, the mean function, “mean()”, can be used to obtain the mean x and y coordinates of the points for each cluster. Another scatterplot can be used to visually identify clusters using different colors. From there, one can determine if the algorithm was successful in generating a useful analysis.</p>
+<p>K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock (Soofi et al., 2015). Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. One can consider ‘crisp clusters’ where data belongs to only one cluster, or ‘fuzzy clustering’ where data can belong to more than one cluster. Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. One of the articles reviewed proposed resolution for the fact that there is a need for better initial centroids, and the way to do so is by sorting the data points distance-wise and separating them into equal sets. The authors believe partitioning the data in a sorted method leads to better results. The authors then reassign the data points to the correct clusters by looking at the distance between the centroid to whichever cluster is closest. We also see in this article that the authors address the time complexity involved with k-means clustering. The proposed method uses a heap sort method, which is O(nlogn); combining that with the time complexity, we still see that time complexity is O(nlogn) on average. This confirms that the proposed method in this article is more efficient than the original k-means clustering. The experimental results also corroborate this. The articles provides an overview of KMC, challenges/limitations of the algorithm, and analysis of stocks using k-means with the results. The articles reviewed explore various aspects, including data selection, methodology, optimization techniques, and the impact of different factors on stock prices.</p>
+<p>Through the use of data mining technology, large amounts of complex financial data can be analyzed. KMC can be used to classify financial features according to maximum and minimum similarity. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum. The study utilized the ‘artificial fish swarm algorithm’ to correct for these shortcomings. The data included 100 financial companies analyzing the following data: closing price, price earnings ratio, earnings-per-share, return on net assets, per share provident fund, and net assets per share. The data that was extracted with relation to KMC included the convergence time, standard deviation, and silhouette coefficient. The silhouette coefficient for this dataset was 0.63 and results that are close to 1 demonstrate better clustering performance. Additionally, the stock clustering results were placed into 2 categories: poor performance versus high-performance stock. In general, stocks that were deemed high-performance had significantly higher closing prices, higher price earnings ratios, high earnings-per-share, and high return on net assets. The paper demonstrated that the classification of stocks could assist investors in making selections improving investment performance. This journal article analyzed the monthly rate of return of banks using the K-means clustering algorithm. Specifically, a clustering approach was used to understand and identify stock market price movement patterns as a result of macro economic indicators. Simultaneously, the clustering method was used to provide a perspective on optimizing investment returns with respect to the banking sector. The data that was analyzed included monthly prices on the stock market index of the banking sector in Indonesia, the reference rate from the Central Bank of Indonesia, the US dollar to the rupiah exchange rate, the inflation rate, and the consumer price index. By using the K-means clustering method, the goal was to find homogeneous subgroups within the data whose points were as close as possible according to each cluster. This was accomplished by using that Euclidean distance thereby minimizing the paired squared deviations of points within the same cluster. In this case, three clusters were determined based on the average rate of return as follows: lower, middle, and upper. The analysis found that the cluster centers were located at 0.010, 0.014, and 0.178. Also, it was found that interest rates negatively affected the stock prices. Additionally, strengthening of the US dollar against the rupiah increased the banking stocks in the middle upper cluster. With respect to inflation, it negatively impacted the lower cluster, and insignificant impact on the middle cluster, and a positive impact on the upper cluster. As a result, the study concluded that the K-means clustering method can assist in optimizing returns considering each analyzed cluster. In essence, the middle cluster was more reactive with respect to interest and exchange rates, and the upper cluster was reactive to inflation.</p>
+<p>The article looked at different methods, starting with classification, prediction, and clustering. When looking at classification, it defines the classes by using models. The classification is then used to predict any data that is not available or for missing values. The article then touches on the challenges with classification. The k-means cluster in this article was used to create sub-clusters and leveraged purity thresholds to prevent problems. Reviewing the effectiveness of the cluster method, companies were grouped based on information from their annual financial reports. Based on the results, the best information to help predict future stock prices was found using their qualitative piece of the annual report. The author proposes a method to see which companies are more profitable, which would lead to purchasing the best stock. The article does look at different types of techniques and research completed by others. The authors reviewed the portioning, density-based, hierarchical, and model-based techniques which were then validated by using the index of each technique. As a result of those validations, the partitioning based on k-means and model-based techniques performed the best. The authors also combine regression methods to the predictive piece of the model. Once the authors determined the companies based on the clustering technique, they used the regression method to predict future stock prices. This article does help both buyers and sellers with their prediction since their method will tell buyers the best time to get in the market before a price increase and, in turn, tell sellers to either hold or sell if prices will be lowered. In the article, we also saw results for the TCS company, which shows the stock price doubling in the future.</p>
+<p>The final article explained the problem of stock market investors who make psychologically-based or cognitively biased decisions when making stock picks. As part of the analysis, K-means clustering was used to separate investor groups into their behaviors using the subgroups of market experience, invested amount, age, and market perception. This was performed using the “R” software analysis tool. As an additional tool to assist in creating the clusters of data, the silhouette statistic was used to determine if the centroid of the clusters were of appropriate distance. The K-means clusters were visualized in two-dimensional space which helped determine the optimal number of clusters as k=3. The Euclidean distance was used for this K-means clustering method. The cluster groups were as follows: 1. confirmation bias and investment amount; 2. age, gender, and economic assessment; 3. biases such as bandwagon, billability, loss aversion, hot hand, gamblers, and Dunning-Kruger combined with investment experience. It was found that loss aversion bias, experience, and gamblers bias were the greatest influential factors. The least influential factors were age, gender, and perception of economy. However, other statistical tests that were utilized in this study found that age was a significant factor in risk-taking. Therefore, from an empirical perspective, multiple methods should be used to help discern how bias affects investment decision-making in the stock market.</p>
+</section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>The common non-parametric regression model is <span class="math inline">\(Y_i = m(X_i) + \varepsilon_i\)</span>, where <span class="math inline">\(Y_i\)</span> can be defined as the sum of the regression function value <span class="math inline">\(m(x)\)</span> for <span class="math inline">\(X_i\)</span>. Here <span class="math inline">\(m(x)\)</span> is unknown and <span class="math inline">\(\varepsilon_i\)</span> some errors. With the help of this definition, we can create the estimation for local averaging i.e.&nbsp;<span class="math inline">\(m(x)\)</span> can be estimated with the product of <span class="math inline">\(Y_i\)</span> average and <span class="math inline">\(X_i\)</span> is near to <span class="math inline">\(x\)</span>. In other words, this means that we are discovering the line through the data points with the help of surrounding data points. The estimation formula is printed below <span class="citation" data-cites="R-base">(<a href="#ref-R-base" role="doc-biblioref">R Core Team 2019</a>)</span>:</p>
-<p><span class="math display">\[
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-\]</span> <span class="math inline">\(W_n(x)\)</span> is the sum of weights that belongs to all real numbers. Weights are positive numbers and small if <span class="math inline">\(X_i\)</span> is far from <span class="math inline">\(x\)</span>.</p>
-</section>
-<section id="analysis-and-results" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h2>
-<section id="data-and-vizualisation" class="level3">
-<h3 class="anchored" data-anchor-id="data-and-vizualisation">Data and Vizualisation</h3>
-<p>A study was conducted to determine how…</p>
+<p>$$</p>
+<p>$$</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading packages </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+
 </div>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(murders))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<thead>
-<tr class="header">
-<th style="text-align: left;">state</th>
-<th style="text-align: left;">abb</th>
-<th style="text-align: left;">region</th>
-<th style="text-align: right;">population</th>
-<th style="text-align: right;">total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Alabama</td>
-<td style="text-align: left;">AL</td>
-<td style="text-align: left;">South</td>
-<td style="text-align: right;">4779736</td>
-<td style="text-align: right;">135</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Alaska</td>
-<td style="text-align: left;">AK</td>
-<td style="text-align: left;">West</td>
-<td style="text-align: right;">710231</td>
-<td style="text-align: right;">19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arizona</td>
-<td style="text-align: left;">AZ</td>
-<td style="text-align: left;">West</td>
-<td style="text-align: right;">6392017</td>
-<td style="text-align: right;">232</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Arkansas</td>
-<td style="text-align: left;">AR</td>
-<td style="text-align: left;">South</td>
-<td style="text-align: right;">2915918</td>
-<td style="text-align: right;">93</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">California</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">West</td>
-<td style="text-align: right;">37253956</td>
-<td style="text-align: right;">1257</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Colorado</td>
-<td style="text-align: left;">CO</td>
-<td style="text-align: left;">West</td>
-<td style="text-align: right;">5029196</td>
-<td style="text-align: right;">65</td>
-</tr>
-</tbody>
-</table>
+
 </div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ggplot1 <span class="ot">=</span> murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="at">y=</span>total)) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  ggplot1 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>region), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span>abb)) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> <span class="st">"y~x"</span>, <span class="at">method=</span>lm,<span class="at">se =</span> F)<span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Populations in millions (log10 scale)"</span>) <span class="sc">+</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Total number of murders (log10 scale)"</span>) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"US Gun Murders in 2010"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Region"</span>)<span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_wsj</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<section id="analysis-and-results" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h3>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
@@ -272,16 +104,21 @@ M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
 <h3 class="anchored" data-anchor-id="conlusion">Conlusion</h3>
 </section>
 </section>
-<section id="references" class="level2 unnumbered">
-
-
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Ahmed, M., Seraj, R., &amp; Islam, S. M. S. (2020). The k-means algorithm: A comprehensive survey and performance evaluation. Electronics, 9(8), 1295.</p>
+<p>Babu, M. S., Geethanjali, N., &amp; Satyanarayana, B. (2012). Clustering approach to stock market prediction. International Journal of Advanced Networking and Applications, 3(4), 1281.</p>
+<p>Bini, B. S., &amp; Mathew, T. (2016). Clustering and regression techniques for stock prediction. Procedia Technology, 24, 1248-1255.</p>
+<p>Fang, &amp; Chiao, C. (2021). Research on prediction and recommendation of financial stocks based on K-means clustering algorithm optimization. Journal of Computational Methods in Sciences and Engineering, 21(5), 1081–1089. https://doi.org/10.3233/JCM-204716</p>
+<p>Malik, &amp; Tuckfield, B. (2019). Applied unsupervised learning with R: Uncover hidden relationships and patterns with K-Means clustering, hierarchical clustering, and PCA (1st edition). Packt Publishing Ltd.</p>
+<p>Ossareh, Pourjafar, M. S., &amp; Kopczewski, T. (2021). Cognitive Biases on the Iran Stock Exchange: Unsupervised Learning Approach to Examining Feature Bundles in Investors’ Portfolios. Applied Sciences, 11(22), 10916–. https://doi.org/10.3390/app112210916</p>
+<p>Soofi , Mohseni , M., &amp; Momeni , M. (2015). Clustering Stock Market Companies via K- Means Algorithm. Kuwait Chapter of Arabian Journal of Business &amp; Management Review, 4(5), 1–10. https://doi.org/10.12816/0018959</p>
+<p>Yedla, M., Pathakota, S. R., &amp; Srinivasa, T. M. (2010). Enhancing K-means clustering algorithm with improved initial center. International Journal of computer science and information technologies, 1(2), 121-125.</p>
+<p>Yuan, C., &amp; Yang, H. (2019). Research on K-value selection method of K-means clustering algorithm. J, 2(2), 226-235.</p>
+<p>Zuhroh, Rofik, M., &amp; Echchabi, A. (2021). Banking stock price movement and macroeconomic indicators: k-means clustering approach. Cogent Business &amp; Management, 8(1), 1–10. https://doi.org/10.1080/23311975.2021.1980247</p>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-R-base" class="csl-entry" role="doc-biblioentry">
-R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org">https://www.R-project.org</a>.
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
