@@ -28,6 +28,8 @@ The final article explained the problem of stock market investors who make psych
 3.	biases such as bandwagon, billability, loss aversion, hot hand, gamblers, and Dunning-Kruger combined with investment experience.
 It was found that loss aversion bias, experience, and gamblers bias were the greatest influential factors. The least influential factors were age, gender, and perception of economy. However, other statistical tests that were utilized in this study found that age was a significant factor in risk-taking. Therefore, from an empirical perspective, multiple methods should be used to help discern how bias affects investment decision-making in the stock market.
 
+The dataset selected by the team is stock data from yahoo finance. Using the dataset we intend on comparing different sectors using k-means clustering to see which sector function the best revenue wise. 
+
 ## Introduction
 
 ## Methods
