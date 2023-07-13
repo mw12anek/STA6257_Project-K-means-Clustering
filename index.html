@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-07-09">
+<meta name="dcterms.date" content="2023-07-13">
 
 <title>Stocks K-Means Clustering</title>
 <style>
@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 9, 2023</p>
+      <p class="date">July 13, 2023</p>
     </div>
   </div>
     
@@ -73,6 +73,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</section>
 <section id="literature-review" class="level2">
 <h2 class="anchored" data-anchor-id="literature-review">Literature Review</h2>
 <p>The k-means clustering algorithm is an unsupervised machine learning algorithm due to its used of grouping similar unlabelled data points into groups. one of the article review focuses on four of the k value, such as the elbow method, gap statistic, silhouette coefficient, and canopy. The k-value method which stood out is the silhouette coefficient one, which looks at the cohesiveness between the cluster. The article then used the Iris dataset to provide evidence of their experiment. They applied the mentioned four k value algorithm and evaluated the results. Based on the results, the canopy was less effective when choosing the k value. This article also provides the different advantages of the four algorithms. After clustering the data, supervised learning can potentially take place. For example, the Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. However, when the dimensions are very high, the Cosine method works better. The Cosine method is the cosine of the angle between any two points with the origin at its vertex. It is then calculated by dividing the dot product of any two vectors by the product of the vector magnitudes. The Manhattan distance measures the right angle along the “x” and “y” axis. This is essentially the sum of the absolute value of the differences between two coordinates. The Hamming distance takes into consideration the number of coordinates differing from each other. The textbook discusses how “R” is used in the context of K-means clustering. There are several steps involved including random coordinates on the scatterplot as the initial cluster centers named “k1” and “k2” for a two-cluster analysis. Next, the number of iterations needs to be determined such that the centers of the data stop changing significantly after each iteration. Then the Euclidean distance, if that is the selected methodology, will be used by applying the square root function as “sqrt()” in R. Each point must be assigned to the cluster whose center it is closest to. Then, the mean function, “mean()”, can be used to obtain the mean x and y coordinates of the points for each cluster. Another scatterplot can be used to visually identify clusters using different colors. From there, one can determine if the algorithm was successful in generating a useful analysis.</p>
@@ -81,9 +84,6 @@ ul.task-list li input[type="checkbox"] {
 <p>The article looked at different methods, starting with classification, prediction, and clustering. When looking at classification, it defines the classes by using models. The classification is then used to predict any data that is not available or for missing values. The article then touches on the challenges with classification. The k-means cluster in this article was used to create sub-clusters and leveraged purity thresholds to prevent problems. Reviewing the effectiveness of the cluster method, companies were grouped based on information from their annual financial reports. Based on the results, the best information to help predict future stock prices was found using their qualitative piece of the annual report. The author proposes a method to see which companies are more profitable, which would lead to purchasing the best stock. The article does look at different types of techniques and research completed by others. The authors reviewed the portioning, density-based, hierarchical, and model-based techniques which were then validated by using the index of each technique. As a result of those validations, the partitioning based on k-means and model-based techniques performed the best. The authors also combine regression methods to the predictive piece of the model. Once the authors determined the companies based on the clustering technique, they used the regression method to predict future stock prices. This article does help both buyers and sellers with their prediction since their method will tell buyers the best time to get in the market before a price increase and, in turn, tell sellers to either hold or sell if prices will be lowered. In the article, we also saw results for the TCS company, which shows the stock price doubling in the future.</p>
 <p>The final article explained the problem of stock market investors who make psychologically-based or cognitively biased decisions when making stock picks. As part of the analysis, K-means clustering was used to separate investor groups into their behaviors using the subgroups of market experience, invested amount, age, and market perception. This was performed using the “R” software analysis tool. As an additional tool to assist in creating the clusters of data, the silhouette statistic was used to determine if the centroid of the clusters were of appropriate distance. The K-means clusters were visualized in two-dimensional space which helped determine the optimal number of clusters as k=3. The Euclidean distance was used for this K-means clustering method. The cluster groups were as follows: 1. confirmation bias and investment amount; 2. age, gender, and economic assessment; 3. biases such as bandwagon, billability, loss aversion, hot hand, gamblers, and Dunning-Kruger combined with investment experience. It was found that loss aversion bias, experience, and gamblers bias were the greatest influential factors. The least influential factors were age, gender, and perception of economy. However, other statistical tests that were utilized in this study found that age was a significant factor in risk-taking. Therefore, from an empirical perspective, multiple methods should be used to help discern how bias affects investment decision-making in the stock market.</p>
 <p>The dataset selected by the team is stock data from yahoo finance. Using the dataset we intend on comparing different sectors using k-means clustering to see which sector function the best revenue wise.</p>
-</section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
