@@ -47,8 +47,6 @@ $$
 ```{r, warning=FALSE, echo=TRUE}
 library(readr)
 SPDataset <- read_csv("SPDataset.csv")
-View(SPDataset)
-  
 ```
 
 ### Statistical Modeling
