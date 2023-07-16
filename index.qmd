@@ -1,5 +1,5 @@
 ---
-title: "K-means Clustering of Stocks "
+title: "K-means Clustering Using Stock Data "
 author: "Michael Wanek, Woodny Dorceans"
 date: '`r Sys.Date()`'
 format:
@@ -13,27 +13,98 @@ bibliography: references.bib # file contains bibtex for references
 ## Introduction
 Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock (Soofi et al., 2015). Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum (Fang et al., 2021).
 
-What is k-means clustering(KMC)? It is a version of unsupervised machine learning. Unsupervised learning would utilize algorithms to analyze and cluster datasets that are unlabeled (Malik et al., 2019). In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. Then you must measure the distance between each objects and centroid and assigned to the correct groups until all objects have a group (Yuan et al., 2019). In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:
+What is k-means clustering(KMC)? It is a version of unsupervised machine learning. Unsupervised learning would utilize algorithms to analyze and cluster datasets that are unlabeled (Malik et al., 2019). In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. [@Figure1] below shows a visual representation of k-means Then you must measure the distance between each objects and centroid and assigned to the correct groups until all objects have a group (Yuan et al., 2019). In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:
 1.	Initial stage that partitioned the objects randomly into ‘k’ clusters.
 2.	The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.
 3.	The improvement stage where objects were assigned to the cluster with the nearest center.
-4.	The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce (Soofi et al., 2015).
+4.	The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce (Soofi et al., 2015). 
 
-Using KMC it can help a stock buyers and sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tell sellers to hold or to sale their stocks (Bini et al., 2016). KMC is overall a great algorithm, but it also does have limitations. Some of those limitations include the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum (Fang et al., 2021). Other types of limitations include the inability to use all types of data with KMC (Ahmed et al., 2020).
+```{r, warning=FALSE, echo=T, message=FALSE}
+library(knitr)
+include_graphics("Figure 1.png")
+```
+Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)
+
+
+Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tell sellers to hold or to sale their stocks (Bini et al., 2016). KMC is overall a great algorithm, but it also does have limitations. Some of those limitations include the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum (Fang et al., 2021). Other types of limitations include the inability to use all types of data with KMC (Ahmed et al., 2020).
 
 
 This paper provides the definition of KMC, some of the limitations of the methodology, as well as our analysis on how well KMC does handling stock data. 
 
 
 ## Methods
+There are several methods involved when selecting the most optimal number of clusters. This paper we looked at the elbow, silhouette, as well as the gap statistic method in order to see which was the best method to use.  
+The first method, Elbow Method is 
+Silhouette Method – 
+Gap statistic method - 
 
+Distance
+Euclidean Distance - 
 
+ 
+$$
+d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 $$
 
-$$
 
 
+
+### Analysis and Results
 ```{r, warning=FALSE, echo=T, message=FALSE}
+# loading packages 
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(cluster)
+library(NbClust)
+library(factoextra)
+library("dplyr")
+library(gridExtra)
+# read csv file into R
+df<-read_csv("SPDataset.csv")
+#view the data headers
+head(df)
+# confirm the data is a dataframe
+class(df)
+# standardize the data having a standard normal with a mean of 0 and a standard deviation of 1
+df<-scale(df)
+#view the data
+head(df)
+#estimate the optimal number of clusters according to the number of bends (elbow method)
+fviz_nbclust(df, kmeans, method = "wss") +
+    geom_vline(xintercept = 4, linetype = 2)+
+  labs(subtitle = "Elbow method")
+#estimate the optimal number of clusters Silhouette method
+fviz_nbclust(df, kmeans, method = "silhouette")+
+  labs(subtitle = "Silhouette method")
+#estimate the optimal number of clusters with the 'gap statistics' method
+fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
+  labs(subtitle = "Gap statistic method")
+#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
+nb <- NbClust(df, distance = "euclidean", min.nc = 2,
+        max.nc = 10, method = "kmeans")
+#test kmeans cluster for k=3, k=4 and k=5 for comparison
+k3 <- kmeans(df, centers = 3, nstart = 25)
+k4 <- kmeans(df, centers = 4, nstart = 25)
+k5 <- kmeans(df, centers = 5, nstart = 25)
+k6 <- kmeans(df, centers = 6, nstart = 25)
+# plots to compare
+p1 <- fviz_cluster(k3, geom = "point", data = df) + ggtitle("k = 3")
+p2 <- fviz_cluster(k4, geom = "point",  data = df) + ggtitle("k = 4")
+p3 <- fviz_cluster(k5, geom = "point",  data = df) + ggtitle("k = 5")
+p4 <- fviz_cluster(k6, geom = "point",  data = df) + ggtitle("k = 6")
+grid.arrange(p1, p2, p3, p4, nrow = 2)
+#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
+set.seed(123)
+final3 <- kmeans(df, 3, nstart = 25)
+final4 <- kmeans(df, 4, nstart = 25)
+final5 <- kmeans(df, 5, nstart = 25)
+final6 <- kmeans(df, 6, nstart = 25)
+#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster
+print(final3)
+print(final4)
+print(final5)
+print(final6)
 
 ```
 
@@ -43,11 +114,6 @@ $$
   
 ```
 
-### Analysis and Results
-```{r, warning=FALSE, echo=TRUE}
-library(readr)
-SPDataset <- read_csv("SPDataset.csv")
-```
 
 ### Statistical Modeling
 
