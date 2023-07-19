@@ -85,6 +85,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -139,13 +158,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock (Soofi et al., 2015). Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum (Fang et al., 2021).</p>
-<p>What is k-means clustering(KMC)? It is a version of unsupervised machine learning. Unsupervised learning would utilize algorithms to analyze and cluster datasets that are unlabeled (Malik et al., 2019). In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. <span class="citation" data-cites="Figure1">(<a href="#ref-Figure1" role="doc-biblioref"><strong>Figure1?</strong></a>)</span> below shows a visual representation of k-means Then you must measure the distance between each objects and centroid and assigned to the correct groups until all objects have a group (Yuan et al., 2019). In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:</p>
+<p>Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock <span class="citation" data-cites="momeni2015clustering">(<a href="#ref-momeni2015clustering" role="doc-biblioref">Momeni, Mohseni, and Soofi 2015</a>)</span>. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>.</p>
+<p>What is k-means clustering(KMC)? It is a version of unsupervised machine learning. Unsupervised learning would utilize algorithms to analyze and cluster datasets that are unlabeled <span class="citation" data-cites="malik2019applied">(<a href="#ref-malik2019applied" role="doc-biblioref">Malik and Tuckfield 2019</a>)</span>. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. <span class="citation" data-cites="Figure1">(<a href="#ref-Figure1" role="doc-biblioref"><strong>Figure1?</strong></a>)</span> below shows a visual representation of k-means Then you must measure the distance between each objects and centroid and assigned to the correct groups until all objects have a group <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:</p>
 <ol type="1">
 <li><p>Initial stage that partitioned the objects randomly into ‘k’ clusters.</p></li>
 <li><p>The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.</p></li>
 <li><p>The improvement stage where objects were assigned to the cluster with the nearest center.</p></li>
-<li><p>The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce (Soofi et al., 2015).</p></li>
+<li><p>The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce <span class="citation" data-cites="momeni2015clustering">(<a href="#ref-momeni2015clustering" role="doc-biblioref">Momeni, Mohseni, and Soofi 2015</a>)</span>.</p></li>
 </ol>
 <div class="cell">
 <details>
@@ -158,13 +177,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)</p>
-<p>Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tell sellers to hold or to sale their stocks (Bini et al., 2016). KMC is overall a great algorithm, but it also does have limitations. Some of those limitations include the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum (Fang et al., 2021). Other types of limitations include the inability to use all types of data with KMC (Ahmed et al., 2020).</p>
+<p>Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tell sellers to hold or to sale their stocks <span class="citation" data-cites="bini2016clustering">(<a href="#ref-bini2016clustering" role="doc-biblioref">Bini and Mathew 2016</a>)</span>. KMC is overall a great algorithm, but it also does have limitations. Some of those limitations include the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>. Other types of limitations include the inability to use all types of data with KMC <span class="citation" data-cites="ahmed2020k">(<a href="#ref-ahmed2020k" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>.</p>
 <p>This paper provides the definition of KMC, some of the limitations of the methodology, as well as our analysis on how well KMC does handling stock data.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <p>There are several methods involved when selecting the most optimal number of clusters. This paper we looked at the elbow, silhouette, as well as the gap statistic method in order to see which was the best method to use.<br>
-The first method, Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE. (Yuan et al., 2019)</p>
+The first method, Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE. <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span></p>
 <p>Steps to find the best cluster number using elbow method:</p>
 <ol type="1">
 <li><p>Select different number of clusters to try</p></li>
@@ -181,14 +200,16 @@ G(k) = E_n(\log(W_k)) - \log(W_k)
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 \]</span></p>
 <p>As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is same as the actual number of classes in the dataset.</p>
-<p>**Euclidean Distance</p>
+<section id="euclidean-distance" class="level3">
+<h3 class="anchored" data-anchor-id="euclidean-distance">Euclidean Distance</h3>
 <p>Calculating the distance for KMC can be achieved by a few different method. The default mostly used one is known as euclidean distance, this is used to calculate the distance between a point and it’s initial cluster. <span class="math display">\[
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 \]</span></p>
 </section>
+</section>
 <section id="analysis-and-results" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h2>
-<p>The dataset was taken from the publication “Irrational Exuberance” by Robert Shiller (2015). The dataset summarized 150 years of data on the S&amp;P 500 index which consisted of the 500 largest companies by market capitalization listed on stock exchanges in the United States (S&amp;P Dow Jones Indices, 2023). Specifically, the dataset metrics included the S&amp;P 500 composite index valuation, dividends, earnings, consumer price index, long interest rate, real price, real dividend, real total price, real earnings, cyclically adjusted price earnings ratio, monthly total bond returns, and others. For the project’s analysis, the data was converted to month-by-month percentage changes to make meaningful clusters which included the composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio (adjusted and total), and real total bond return. The dataset was limited to the years 2012 to present considering that more recent data may be more germane to today’s dynamic market conditions. The CAPE ratio was included in the dataset which was an innovative metric proposed by Robert Shiller which is calculated as follows (Shiller, 2015). <span class="math display">\[
+<p>The dataset was taken from the publication “Irrational Exuberance” by Robert Shiller [<span class="citation" data-cites="shiller2015irrational">Shiller (<a href="#ref-shiller2015irrational" role="doc-biblioref">2015</a>)</span>). The dataset summarized 150 years of data on the S&amp;P 500 index which consisted of the 500 largest companies by market capitalization listed on stock exchanges in the United States (S&amp;P Dow Jones Indices, 2023). Specifically, the dataset metrics included the S&amp;P 500 composite index valuation, dividends, earnings, consumer price index, long interest rate, real price, real dividend, real total price, real earnings, cyclically adjusted price earnings ratio, monthly total bond returns, and others. For the project’s analysis, the data was converted to month-by-month percentage changes to make meaningful clusters which included the composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio (adjusted and total), and real total bond return. The dataset was limited to the years 2012 to present considering that more recent data may be more germane to today’s dynamic market conditions. The CAPE ratio was included in the dataset which was an innovative metric proposed by Robert Shiller which is calculated as follows <span class="citation" data-cites="shiller2015irrational">(<a href="#ref-shiller2015irrational" role="doc-biblioref">Shiller 2015</a>)</span>. <span class="math display">\[
 \text{Cyclically adjusted price - to - earnings ratio} = \frac{\text{Share Price}}{{\text{(10-year Inflation Adjusted Average Earnings)}}}
 \]</span> The CAPE ratio has the purported advantage of measuring valuation over a ten-year period to smooth out random fluctuations in corporate profits thereby providing an effective forecasting tool to identify undervalued or overvalued indexes or stocks. The historical average of the CAPE ratio for the S&amp;P 500 has been 16.8; however, climbing ratios of 28 starting in 1997 accurately predicted the dotcom bubble crash of 2000 followed by the prediction of the 2008 market crash. Although some critics point out limitations of the CAPE ratio being too backward looking; market bubbles and unrealistic equity returns using CAPE have been accurately predicted.</p>
 <section id="data-and-vizualisation" class="level3">
@@ -422,7 +443,7 @@ Available components:
 </div>
 <p>The analysis made use of several R packages including the following:</p>
 <p>• The ‘NbClust’ package assisted in cluster analysis by finding the optimal number of groups in the data (Maechler, 2023).</p>
-<p>• The “factoextra” package was used to calculate and visualize kmeans (Kassambara &amp; Mundt, 2023).</p>
+<p>• The “factoextra” package was used to calculate and visualize kmeans <span class="citation" data-cites="kassambara2023factoextra">(<a href="#ref-kassambara2023factoextra" role="doc-biblioref">Kassambara and Mundt 2023</a>)</span>.</p>
 <p>The entire dataset included metrics that generated clusters that were not meaningful considering the expected result in terms of S&amp;P 500 index returns versus economic and corporate data. Therefore, several trials were conducted until meaningful results and clusters were generated. The data was ‘normalized’ using scale() to allow for comparable data using z-score versus raw data. Determining the optimal number of clusters considering the various methods returned inconsistent results as follows:</p>
 <p>• Elbow method: 4 clusters</p>
 <p>• Silhouette method: 2</p>
@@ -440,7 +461,7 @@ Available components:
 <p>o 3 proposed 10 as the best number of clusters</p>
 <p>Considering the lack of agreement in the optimal number of clusters, the visualizations were analyzed as were the cluster means. The visualization with k=4 provided well-defined clusters with minimal overlap. However, k=5 and k=6 visualizations had poorly defined clusters with significant overlap (Géron, 2022). Additionally, the distance of the data from the centroids for cluster with k=4 visually appeared sufficiently small. The elbow method corresponded with k=4 where a ‘bend’ in the data was identified with four clusters. Also, the Dunn index indicated four clusters; this metric sets to identify clusters that are the most compact and well separated. Additionally, the cluster means data was analyzed for k=3, k=4, k-5, and k=6 considering the expected results given economic and corporate indicators and movements in the S&amp;P 500 index. It was therefore determined that k=4 was the optimal number of clusters with sizes of 69, 1, 38, and 15. Although one cluster had only “1” data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios. In this context, extreme events that become predictable using kmeans may be useful to traders.</p>
 <p>The kmeans centroids delivered results that would be expected as follows:</p>
-<p>• Cluster 1: the moderate increase of the S&amp;P 500 of this cluster mean was ≈ 0.51 which was clustered with a slight increase in consumer price index ≈ 0.04 (a metric to reflect inflation), a small increase in long interest rate ≈ 0.17 (this often occurs when the Federal Reserve responds to increasing inflation with interest rate increases often correlated to increasing stock market pricing), a small increase in real earnings ≈ 0.20, a significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase), and a small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks when stock market returns are deemed favorable) (Bosco &amp; Khan, 2018).</p>
+<p>• Cluster 1: the moderate increase of the S&amp;P 500 of this cluster mean was ≈ 0.51 which was clustered with a slight increase in consumer price index ≈ 0.04 (a metric to reflect inflation), a small increase in long interest rate ≈ 0.17 (this often occurs when the Federal Reserve responds to increasing inflation with interest rate increases often correlated to increasing stock market pricing), a small increase in real earnings ≈ 0.20, a significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase), and a small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks when stock market returns are deemed favorable) <span class="citation" data-cites="bosco2018stock">(<a href="#ref-bosco2018stock" role="doc-biblioref">Bosco and Khan 2018</a>)</span></p>
 <p>• Cluster 2: only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash which was clustered with a significant decrease in consumer price index (deflation), a significant decrease in long interest rates (the Federal Reserve rapidly cutting interest rates), a significant decrease in real earnings and CAPE, while total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds).</p>
 <p>• Cluster 3: a moderate decline in the stock market ≈ -0.39 was clustered with moderate deflation, real earnings loss, a CAPE decrease, and a moderate return in bonds.</p>
 <p>• Cluster 4: a significant decline in the stock market ≈ -0.90 was clustered with a significant increase in consumer price index ≈ 1.23 (inflation), a significant long interest rate increase ≈ 1.34, a small decline in real earnings ≈ -0.20, a significant decline in CAPE ≈ -1.12, and a significant decline in total bond return of ≈ -1.60.</p>
@@ -474,9 +495,38 @@ Available components:
 <p>Yedla, M., Pathakota, S. R., &amp; Srinivasa, T. M. (2010). Enhancing K-means clustering algorithm with improved initial center. International Journal of computer science and information technologies, 1(2), 121-125.</p>
 <p>Yuan, C., &amp; Yang, H. (2019). Research on K-value selection method of K-means clustering algorithm. J, 2(2), 226-235.</p>
 <p>Zuhroh, Rofik, M., &amp; Echchabi, A. (2021). Banking stock price movement and macroeconomic indicators: k-means clustering approach. Cogent Business &amp; Management, 8(1), 1–10. https://doi.org/10.1080/23311975.2021.1980247</p>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-ahmed2020k" class="csl-entry" role="doc-biblioentry">
+Ahmed, Mohiuddin, Raihan Seraj, and Syed Mohammed Shamsul Islam. 2020. <span>“The k-Means Algorithm: A Comprehensive Survey and Performance Evaluation.”</span> <em>Electronics</em> 9 (8): 1295.
+</div>
+<div id="ref-bini2016clustering" class="csl-entry" role="doc-biblioentry">
+Bini, BS, and Tessy Mathew. 2016. <span>“Clustering and Regression Techniques for Stock Prediction.”</span> <em>Procedia Technology</em> 24: 1248–55.
+</div>
+<div id="ref-bosco2018stock" class="csl-entry" role="doc-biblioentry">
+Bosco, Joish, and Fateh Khan. 2018. <em>Stock Market Prediction and Efficiency Analysis Using Recurrent Neural Network</em>. Grin Verlag.
+</div>
+<div id="ref-fang2021research" class="csl-entry" role="doc-biblioentry">
+Fang, Zheng, and Chaoshin Chiao. 2021. <span>“Research on Prediction and Recommendation of Financial Stocks Based on k-Means Clustering Algorithm Optimization.”</span> <em>Journal of Computational Methods in Sciences and Engineering</em> 21 (5): 1081–89.
+</div>
+<div id="ref-kassambara2023factoextra" class="csl-entry" role="doc-biblioentry">
+Kassambara, A, and F Mundt. 2023. <span>“Factoextra: Extract and Visualize the Results of Multivariate Data Analyses. R Package Version 1.0. 7. The Comprehensive r Archive Network.”</span>
+</div>
+<div id="ref-malik2019applied" class="csl-entry" role="doc-biblioentry">
+Malik, Alok, and Bradford Tuckfield. 2019. <em>Applied Unsupervised Learning with r: Uncover Hidden Relationships and Patterns with k-Means Clustering, Hierarchical Clustering, and PCA</em>. Packt Publishing Ltd.
+</div>
+<div id="ref-momeni2015clustering" class="csl-entry" role="doc-biblioentry">
+Momeni, Mansoor, Maryam Mohseni, and Mansour Soofi. 2015. <span>“Clustering Stock Market Companies via k-Means Algorithm.”</span> <em>Kuwait Chapter of Arabian Journal of Business and Management Review</em> 33 (2578): 1–10.
+</div>
+<div id="ref-shiller2015irrational" class="csl-entry" role="doc-biblioentry">
+Shiller, Robert J. 2015. <span>“Irrational Exuberance.”</span> In <em>Irrational Exuberance</em>. Princeton university press.
+</div>
+<div id="ref-yuan2019research" class="csl-entry" role="doc-biblioentry">
+Yuan, Chunhui, and Haitao Yang. 2019. <span>“Research on k-Value Selection Method of k-Means Clustering Algorithm.”</span> <em>J</em> 2 (2): 226–35.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
