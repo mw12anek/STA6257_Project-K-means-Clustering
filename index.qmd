@@ -66,14 +66,14 @@ $$
 
 As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is same as the actual number of classes in the dataset.
 
-##Euclidean Distance
+**Euclidean Distance
 
 Calculating the distance for KMC can be achieved by a few different method. The default mostly used one is known as euclidean distance, this is used to calculate the distance between a point and it's initial cluster. 
 $$
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 $$
 
-## Dataset 
+## Analysis and Results
 The dataset was taken from the publication “Irrational Exuberance” by Robert Shiller (2015). The dataset summarized 150 years of data on the S&P 500 index which consisted of the 500 largest companies by market capitalization listed on stock exchanges in the United States (S&P Dow Jones Indices, 2023). Specifically, the dataset metrics included the S&P 500 composite index valuation, dividends, earnings, consumer price index, long interest rate, real price, real dividend, real total price, real earnings, cyclically adjusted price earnings ratio, monthly total bond returns, and others. For the project’s analysis, the data was converted to month-by-month percentage changes to make meaningful clusters which included the composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio (adjusted and total), and real total bond return. The dataset was limited to the years 2012 to present considering that more recent data may be more germane to today’s dynamic market conditions. The CAPE ratio was included in the dataset which was an innovative metric proposed by Robert Shiller which is calculated as follows (Shiller, 2015). 
 $$
 \text{Cyclically adjusted price - to - earnings ratio} = \frac{\text{Share Price}}{{\text{(10-year Inflation Adjusted Average Earnings)}}}
@@ -81,7 +81,86 @@ $$
 The CAPE ratio has the purported advantage of measuring valuation over a ten-year period to smooth out random fluctuations in corporate profits thereby providing an effective forecasting tool to identify undervalued or overvalued indexes or stocks. The historical average of the CAPE ratio for the S&P 500 has been 16.8; however, climbing ratios of 28 starting in 1997 accurately predicted the dotcom bubble crash of 2000 followed by the prediction of the 2008 market crash. Although some critics point out limitations of the CAPE ratio being too backward looking; market bubbles and unrealistic equity returns using CAPE have been accurately predicted. 
 
 
-## Analysis 
+### Data and Vizualisation
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+# loading packages 
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(cluster)
+library(NbClust)
+library(factoextra)
+library("dplyr")
+library(gridExtra)
+# read csv file into R
+df<- read_csv("SPDatasetLAST.csv")
+#view the data headers
+head(df)
+# confirm the data is a dataframe
+class(df)
+# standardize the data having a standard normal with a mean of 0 and a standard deviation of 1
+df<-scale(df)
+#view the data
+head(df)
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#estimate the optimal number of clusters according to the number of bends (elbow method)
+fviz_nbclust(df, kmeans, method = "wss") +
+    geom_vline(xintercept = 4, linetype = 2)+
+  labs(subtitle = "Elbow method")
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#estimate the optimal number of clusters Silhouette method
+fviz_nbclust(df, kmeans, method = "silhouette")+
+  labs(subtitle = "Silhouette method")
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#estimate the optimal number of clusters with the 'gap statistics' method
+fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
+  labs(subtitle = "Gap statistic method")
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
+nb <- NbClust(df, distance = "euclidean", min.nc = 2,
+        max.nc = 10, method = "kmeans")
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#test kmeans cluster for k=3, k=4 and k=5 for comparison
+k3 <- kmeans(df, centers = 3, nstart = 25)
+k4 <- kmeans(df, centers = 4, nstart = 25)
+k5 <- kmeans(df, centers = 5, nstart = 25)
+k6 <- kmeans(df, centers = 6, nstart = 25)
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+# plots to compare
+p1 <- fviz_cluster(k3, geom = "point", data = df) + ggtitle("k = 3")
+p2 <- fviz_cluster(k4, geom = "point",  data = df) + ggtitle("k = 4")
+p3 <- fviz_cluster(k5, geom = "point",  data = df) + ggtitle("k = 5")
+p4 <- fviz_cluster(k6, geom = "point",  data = df) + ggtitle("k = 6")
+grid.arrange(p1, p2, p3, p4, nrow = 2)
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
+set.seed(123)
+final3 <- kmeans(df, 3, nstart = 25)
+final4 <- kmeans(df, 4, nstart = 25)
+final5 <- kmeans(df, 5, nstart = 25)
+final6 <- kmeans(df, 6, nstart = 25)
+```
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster
+print(final4)
+```
+
 The analysis made use of several R packages including the following:
 
 •	The ‘NbClust’ package assisted in cluster analysis by finding the optimal number of groups in the data (Maechler, 2023). 
@@ -136,57 +215,7 @@ The cluster means provided correlating metrics that a trader could potentially u
 ### Statistical Modeling
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
-library(readr)
-library(tidyverse)
-library(ggplot2)
-library(cluster)
-library(NbClust)
-library(factoextra)
-library("dplyr")
-library(gridExtra)
-# read csv file into R
-df<- read_csv("SPDatasetLAST.csv")
-#view the data headers
-head(df)
-# confirm the data is a dataframe
-class(df)
-# standardize the data having a standard normal with a mean of 0 and a standard deviation of 1
-df<-scale(df)
-#view the data
-head(df)
-#estimate the optimal number of clusters according to the number of bends (elbow method)
-fviz_nbclust(df, kmeans, method = "wss") +
-    geom_vline(xintercept = 4, linetype = 2)+
-  labs(subtitle = "Elbow method")
-#estimate the optimal number of clusters Silhouette method
-fviz_nbclust(df, kmeans, method = "silhouette")+
-  labs(subtitle = "Silhouette method")
-#estimate the optimal number of clusters with the 'gap statistics' method
-fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
-  labs(subtitle = "Gap statistic method")
-#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
-nb <- NbClust(df, distance = "euclidean", min.nc = 2,
-        max.nc = 10, method = "kmeans")
-#test kmeans cluster for k=3, k=4 and k=5 for comparison
-k3 <- kmeans(df, centers = 3, nstart = 25)
-k4 <- kmeans(df, centers = 4, nstart = 25)
-k5 <- kmeans(df, centers = 5, nstart = 25)
-k6 <- kmeans(df, centers = 6, nstart = 25)
-# plots to compare
-p1 <- fviz_cluster(k3, geom = "point", data = df) + ggtitle("k = 3")
-p2 <- fviz_cluster(k4, geom = "point",  data = df) + ggtitle("k = 4")
-p3 <- fviz_cluster(k5, geom = "point",  data = df) + ggtitle("k = 5")
-p4 <- fviz_cluster(k6, geom = "point",  data = df) + ggtitle("k = 6")
-grid.arrange(p1, p2, p3, p4, nrow = 2)
-#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
-set.seed(123)
-final3 <- kmeans(df, 3, nstart = 25)
-final4 <- kmeans(df, 4, nstart = 25)
-final5 <- kmeans(df, 5, nstart = 25)
-final6 <- kmeans(df, 6, nstart = 25)
-#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster
-print(final4)
+
 ```
 
 
