@@ -82,7 +82,7 @@ $$
 The CAPE ratio has the purported advantage of measuring valuation over a ten-year period to smooth out random fluctuations in corporate profits thereby providing an effective forecasting tool to identify undervalued or overvalued indexes or stocks. The historical average of the CAPE ratio for the S&P 500 has been 16.8; however, climbing ratios of 28 starting in 1997 accurately predicted the dotcom bubble crash of 2000 followed by the prediction of the 2008 market crash. Although some critics point out limitations of the CAPE ratio being too backward looking; market bubbles and unrealistic equity returns using CAPE have been accurately predicted. 
 
 
-### Data and Vizualisation
+### Data and Visualization
 The packages relevant to the project that were needed included factoextra(), NbClust(), and Cluster(). For example, factoextra can run the k-means algorithm along with visualizations. Also, NbClust() and Cluster() can assist in determining the optimal number of clusters and centroids. 
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
