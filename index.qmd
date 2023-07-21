@@ -23,7 +23,7 @@ KMC is a version of unsupervised machine learning unsupervised machine learning 
 
 4.	The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce [@momeni2015clustering]. 
 
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+```{r pressure, echo=FALSE, fig.cap="Figure 1", out.width = '100%'}
 knitr::include_graphics("Figure 1.png")
 ```
 
