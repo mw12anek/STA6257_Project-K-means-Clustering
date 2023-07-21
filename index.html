@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-07-18">
+<meta name="dcterms.date" content="2023-07-20">
 
 <title>K-means Clustering Using Stocks Data</title>
 <style>
@@ -147,7 +147,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 18, 2023</p>
+      <p class="date">July 20, 2023</p>
     </div>
   </div>
     
@@ -158,8 +158,8 @@ div.csl-indent {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock <span class="citation" data-cites="momeni2015clustering">(<a href="#ref-momeni2015clustering" role="doc-biblioref">Momeni, Mohseni, and Soofi 2015</a>)</span>. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>.</p>
-<p>What is k-means clustering(KMC)? It is a version of unsupervised machine learning. Unsupervised learning would utilize algorithms to analyze and cluster datasets that are unlabeled <span class="citation" data-cites="malik2019applied">(<a href="#ref-malik2019applied" role="doc-biblioref">Malik and Tuckfield 2019</a>)</span>. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. <span class="citation" data-cites="Figure1">(<a href="#ref-Figure1" role="doc-biblioref">n.d.a</a>)</span> below shows a visual representation of k-means Then you must measure the distance between each objects and centroid and assigned to the correct groups until all objects have a group <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:</p>
+<p>Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stocks or indexes <span class="citation" data-cites="momeni2015clustering">(<a href="#ref-momeni2015clustering" role="doc-biblioref">Momeni, Mohseni, and Soofi 2015</a>)</span>. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the K-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>.</p>
+<p>KMC is a version of unsupervised machine learning unsupervised machine learning utilizing algorithms to analyze and cluster datasets that are unlabeled <span class="citation" data-cites="malik2019applied">(<a href="#ref-malik2019applied" role="doc-biblioref">Malik and Tuckfield 2019</a>)</span>. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. <span class="citation" data-cites="Figure1">(<a href="#ref-Figure1" role="doc-biblioref">n.d.a</a>)</span> below shows a visual representation of k-means. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:</p>
 <ol type="1">
 <li><p>Initial stage that partitioned the objects randomly into ‘k’ clusters.</p></li>
 <li><p>The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.</p></li>
@@ -177,13 +177,13 @@ div.csl-indent {
 </div>
 </div>
 <p>Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)</p>
-<p>Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tell sellers to hold or to sale their stocks <span class="citation" data-cites="bini2016clustering">(<a href="#ref-bini2016clustering" role="doc-biblioref">Bini and Mathew 2016</a>)</span>. KMC is overall a great algorithm, but it also does have limitations. Some of those limitations include the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>. Other types of limitations include the inability to use all types of data with KMC <span class="citation" data-cites="ahmed2020k">(<a href="#ref-ahmed2020k" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>.</p>
+<p>Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tells sellers to hold or to sell their stocks <span class="citation" data-cites="bini2016clustering">(<a href="#ref-bini2016clustering" role="doc-biblioref">Bini and Mathew 2016</a>)</span>. KMC does have limitations including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>. Other types of limitations include the inability to use all types of data with KMC <span class="citation" data-cites="ahmed2020k">(<a href="#ref-ahmed2020k" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>.</p>
 <p>This paper provides the definition of KMC, some of the limitations of the methodology, as well as our analysis on how well KMC does handling stock data.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>There are several methods involved when selecting the most optimal number of clusters. This paper we looked at the elbow, silhouette, as well as the gap statistic method in order to see which was the best method to use.<br>
-The first method, Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>.</p>
+<p>There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, as well as the gap statistic methods.</p>
+<p>The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>.</p>
 <p>Steps to find the best cluster number using elbow method:</p>
 <ol type="1">
 <li><p>Select different number of clusters to try</p></li>
@@ -191,18 +191,18 @@ The first method, Elbow Method is used to find a good number of cluster by looki
 <li><p>Plot the SSE on the x axis number of clusters, while on the y axis will show the SSE</p></li>
 <li><p>Once you plot the results will show in an elbow shape, the point found in the elbow shows SSE decreasing rapidly. That point is considered the optimal cluster number.</p></li>
 </ol>
-<p>Silhouette Method – The silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters. Steps to find the best cluster number using silhouette method:</p>
-<p>Gap Statistic Method - The gap statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number.</p>
+<p>Silhouette Method – The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters. Steps to find the best cluster number using silhouette method:</p>
+<p>Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number.</p>
 <p><span class="math display">\[
 G(k) = E_n(\log(W_k)) - \log(W_k)
 \]</span></p>
 <p><span class="math display">\[
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 \]</span></p>
-<p>As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is same as the actual number of classes in the dataset.</p>
+<p>As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With the elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is the same as the actual number of classes in the dataset.</p>
 <section id="euclidean-distance" class="level3">
 <h3 class="anchored" data-anchor-id="euclidean-distance">Euclidean Distance</h3>
-<p>Calculating the distance for KMC can be achieved by a few different method. The default mostly used one is known as euclidean distance, this is used to calculate the distance between a point and it’s initial cluster. <span class="math display">\[
+<p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster. <span class="math display">\[
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 \]</span></p>
 </section>
@@ -214,6 +214,7 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 \]</span> The CAPE ratio has the purported advantage of measuring valuation over a ten-year period to smooth out random fluctuations in corporate profits thereby providing an effective forecasting tool to identify undervalued or overvalued indexes or stocks. The historical average of the CAPE ratio for the S&amp;P 500 has been 16.8; however, climbing ratios of 28 starting in 1997 accurately predicted the dotcom bubble crash of 2000 followed by the prediction of the 2008 market crash. Although some critics point out limitations of the CAPE ratio being too backward looking; market bubbles and unrealistic equity returns using CAPE have been accurately predicted.</p>
 <section id="data-and-vizualisation" class="level3">
 <h3 class="anchored" data-anchor-id="data-and-vizualisation">Data and Vizualisation</h3>
+<p>The packages relevant to the project that were needed included factoextra(), NbClust(), and Cluster(). For example, factoextra can run the k-means algorithm along with visualizations. Also, NbClust() and Cluster() can assist in determining the optimal number of clusters and centroids.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -233,33 +234,27 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
-  SPCompIndexPercentChange CPIPerc…¹ LongI…² RealEa…³ Cyclic…⁴ CAPETo…⁵ RealTo…⁶
-                     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1                     0.04   0.00296  0.110   0.00157  0.0311   0.0311  -1.86e-2
-2                     0.02   0.00821  0.0366 -0.00357  0.00685  0.00744 -1.28e-2
-3                     0.02   0.00258 -0.0101  0.00192  0.0168   0.0168   8.07e-4
-4                     0.01  -0.00103 -0.102   0.0134   0.00803  0.00807  2.10e-2
-5                     0.04   0.00181  0.0966  0.0104   0.0358   0.0360  -1.56e-2
-6                    -0.01   0.00236  0.192   0.00961 -0.0205  -0.0205  -3.35e-2
-# … with abbreviated variable names ¹​CPIPercentChange,
-#   ²​LongInterestRatePercentChange, ³​RealEarningsPercentChange,
-#   ⁴​CyclicallyAdjPEPercentageChange, ⁵​CAPETotalPercentageChange,
-#   ⁶​RealTotalBondReturnPercentageChange</code></pre>
+  SPCompIndexPercentChange CPIPercentChange LongInterestRatePercentChange
+                     &lt;dbl&gt;            &lt;dbl&gt;                         &lt;dbl&gt;
+1                     0.04          0.00296                        0.110 
+2                     0.02          0.00821                        0.0366
+3                     0.02          0.00258                       -0.0101
+4                     0.01         -0.00103                       -0.102 
+5                     0.04          0.00181                        0.0966
+6                    -0.01          0.00236                        0.192 
+# ℹ 4 more variables: RealEarningsPercentChange &lt;dbl&gt;,
+#   CyclicallyAdjPEPercentageChange &lt;dbl&gt;, CAPETotalPercentageChange &lt;dbl&gt;,
+#   RealTotalBondReturnPercentageChange &lt;dbl&gt;</code></pre>
 </div>
+</div>
+<p>Scale() assists with standardizing the data so that it is comparable using “z-scores”.</p>
+<div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># confirm the data is a dataframe</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># standardize the data having a standard normal with a mean of 0 and a standard deviation of 1</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">scale</span>(df)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#view the data</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># standardize the data having a standard normal with a mean of 0 and a standard deviation of 1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">scale</span>(df)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#view the data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     SPCompIndexPercentChange CPIPercentChange LongInterestRatePercentChange
@@ -285,49 +280,53 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 [6,]                -0.6890358                          -1.7469219</code></pre>
 </div>
 </div>
+<p>The Elbow method was used to help determine the optimal number of clusters using the coded algorithm fviz_nbclust(). The elbow method used an unsupervised algorithm approach from a calculation known as the within-cluster sum of squares (WCSS) method.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters according to the number of bends (elbow method)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"wss"</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">4</span>, <span class="at">linetype =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Elbow method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters Silhouette method</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"silhouette"</span>)<span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Silhouette method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters according to the number of bends (elbow method)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"wss"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">4</span>, <span class="at">linetype =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Elbow method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The Silhouette method is an unsupervised method to determine the optimum number of clusters. It uses a mathematical formula to measure how well a data point fits within a cluster through the Silhouette coefficient.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters with the 'gap statistics' method</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">nstart =</span> <span class="dv">25</span>,  <span class="at">method =</span> <span class="st">"gap_stat"</span>, <span class="at">nboot =</span> <span class="dv">50</span>)<span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Gap statistic method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters Silhouette method</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"silhouette"</span>)<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Silhouette method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The “Gap statistic method” is another algorithm that can be used to identify the optimum number of clusters. The method standardizes the data using a logarithmic function.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(df, <span class="at">distance =</span> <span class="st">"euclidean"</span>, <span class="at">min.nc =</span> <span class="dv">2</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">max.nc =</span> <span class="dv">10</span>, <span class="at">method =</span> <span class="st">"kmeans"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters with the 'gap statistics' method</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">nstart =</span> <span class="dv">25</span>,  <span class="at">method =</span> <span class="st">"gap_stat"</span>, <span class="at">nboot =</span> <span class="dv">50</span>)<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Gap statistic method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The coded algorithm NbClust() uses 30 different methods to help determine the optimal number of clusters. The selected distance method was “Euclidean” which uses essentially Pythagorean theorem to find the relative distances between the data points.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(df, <span class="at">distance =</span> <span class="st">"euclidean"</span>, <span class="at">min.nc =</span> <span class="dv">2</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">max.nc =</span> <span class="dv">10</span>, <span class="at">method =</span> <span class="st">"kmeans"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>*** : The Hubert index is a graphical method of determining the number of clusters.
@@ -337,7 +336,7 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
  </code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>*** : The D index is a graphical method of determining the number of clusters. 
@@ -364,46 +363,50 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 ******************************************************************* </code></pre>
 </div>
 </div>
+<p>The K-means algorithm coding: “K-means()” was used for differing number of centroids (k=3 through k=6) and analyzed for relevance.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#test kmeans cluster for k=3, k=4 and k=5 for comparison</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>k6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#test kmeans cluster for k=3, k=4 and k=5 for comparison</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>k6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids. In this case, k=3 through k=6.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots to compare</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 3"</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 4"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 5"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k6, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 6"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots to compare</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 3"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 4"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 5"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k6, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 6"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The output of K-means() was assigned to different data frames (final3 through final6) for further analyses and selection of the optimal number of clusters.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>final3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>final4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>final5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>final6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>final3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>final4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>final5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>final6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Based on the analysis of the output data and visualizations, k=4 was selected and the results are displayed using the print().</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(final4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(final4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>K-means clustering with 4 clusters of sizes 69, 1, 38, 15
@@ -444,58 +447,22 @@ Available components:
 <p>The analysis made use of several R packages including the following:</p>
 <p>• The ‘NbClust’ package assisted in cluster analysis by finding the optimal number of groups in the data (Maechler, 2023).</p>
 <p>• The “factoextra” package was used to calculate and visualize kmeans <span class="citation" data-cites="kassambara2023factoextra">(<a href="#ref-kassambara2023factoextra" role="doc-biblioref">Kassambara and Mundt 2023</a>)</span>.</p>
-<p>The entire dataset included metrics that generated clusters that were not meaningful considering the expected result in terms of S&amp;P 500 index returns versus economic and corporate data. Therefore, several trials were conducted until meaningful results and clusters were generated. The data was ‘normalized’ using scale() to allow for comparable data using z-score versus raw data. Determining the optimal number of clusters considering the various methods returned inconsistent results as follows:</p>
-<p>• Elbow method: 4 clusters</p>
-<p>• Silhouette method: 2</p>
-<p>• Gap statistic: 1</p>
-<p>• Humbert statistic: 5</p>
-<p>• D index: 4</p>
-<p>• Among all other indices:</p>
-<p>o 6 proposed 2 as the best number of clusters</p>
-<p>o 2 proposed 3 as the best number of clusters</p>
-<p>o 3 proposed 4 as the best number of clusters</p>
-<p>o 6 proposed 5 as the best number of clusters</p>
-<p>o 2 proposed 6 as the best number of clusters</p>
-<p>o 1 proposed 7 as the best number of clusters</p>
-<p>o 1 proposed 9 as the best number of clusters</p>
-<p>o 3 proposed 10 as the best number of clusters</p>
-<p>Considering the lack of agreement in the optimal number of clusters, the visualizations were analyzed as were the cluster means. The visualization with k=4 provided well-defined clusters with minimal overlap. However, k=5 and k=6 visualizations had poorly defined clusters with significant overlap <span class="citation" data-cites="geron2022hands">(<a href="#ref-geron2022hands" role="doc-biblioref">Géron 2022</a>)</span>. Additionally, the distance of the data from the centroids for cluster with k=4 visually appeared sufficiently small. The elbow method corresponded with k=4 where a ‘bend’ in the data was identified with four clusters. Also, the Dunn index indicated four clusters; this metric sets to identify clusters that are the most compact and well separated. Additionally, the cluster means data was analyzed for k=3, k=4, k-5, and k=6 considering the expected results given economic and corporate indicators and movements in the S&amp;P 500 index. It was therefore determined that k=4 was the optimal number of clusters with sizes of 69, 1, 38, and 15. Although one cluster had only “1” data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios. In this context, extreme events that become predictable using kmeans may be useful to traders.</p>
-<p>The kmeans centroids delivered results that would be expected as follows:</p>
-<p>• Cluster 1: the moderate increase of the S&amp;P 500 of this cluster mean was ≈ 0.51 which was clustered with a slight increase in consumer price index ≈ 0.04 (a metric to reflect inflation), a small increase in long interest rate ≈ 0.17 (this often occurs when the Federal Reserve responds to increasing inflation with interest rate increases often correlated to increasing stock market pricing), a small increase in real earnings ≈ 0.20, a significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase), and a small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks when stock market returns are deemed favorable) <span class="citation" data-cites="bosco2018stock">(<a href="#ref-bosco2018stock" role="doc-biblioref">Bosco and Khan 2018</a>)</span></p>
-<p>• Cluster 2: only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash which was clustered with a significant decrease in consumer price index (deflation), a significant decrease in long interest rates (the Federal Reserve rapidly cutting interest rates), a significant decrease in real earnings and CAPE, while total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds).</p>
-<p>• Cluster 3: a moderate decline in the stock market ≈ -0.39 was clustered with moderate deflation, real earnings loss, a CAPE decrease, and a moderate return in bonds.</p>
-<p>• Cluster 4: a significant decline in the stock market ≈ -0.90 was clustered with a significant increase in consumer price index ≈ 1.23 (inflation), a significant long interest rate increase ≈ 1.34, a small decline in real earnings ≈ -0.20, a significant decline in CAPE ≈ -1.12, and a significant decline in total bond return of ≈ -1.60.</p>
-<p>The cluster means provided correlating metrics that a trader could potentially use to reap better gains when investing in the S&amp;P 500. For example, both inflationary and deflationary cycles led to stock market losses. These losses were also reflected in the CAPE ratios. Stock market increases were correlated with insignificant inflationary pressures correlated with earnings increases and a positive CAPE. Traders could potentially use all of these factors as signals of when to buy and sell the S&amp;P 500 thereby watching long interest rate, consumer price index, earnings, bond returns, and CAPE ratios to optimize the purchase and sale of the S&amp;P 500 index demonstrating the utility of kmeans analysis.</p>
+<p>The entire dataset included metrics that generated clusters that were not meaningful considering the expected result in terms of S&amp;P 500 index returns versus economic and corporate data. Therefore, several trials were conducted until meaningful results and clusters were generated. The data was ‘normalized’ using scale() to allow for comparable data using z-score versus raw data. Determining the optimal number of clusters considering the various methods returned inconsistent including Elbow method: 4 clusters, Silhouette method: 2, Gap statistic: 1, Humbert statistic: 5, D index: 4, and other proposed indices. Considering the lack of agreement in the optimal number of clusters, the visualizations were analyzed as were the cluster means. The visualization with k=4 provided well-defined clusters with minimal overlap. However, k=5 and k=6 visualizations had poorly defined clusters with significant overlap <span class="citation" data-cites="geron2022hands">(<a href="#ref-geron2022hands" role="doc-biblioref">Géron 2022</a>)</span>. Additionally, the distance of the data from the centroids for cluster with k=4 visually appeared sufficiently small. The elbow method corresponded with k=4 where a ‘bend’ in the data was identified with four clusters. Also, the Dunn index indicated four clusters; this metric sets to identify clusters that are the most compact and well separated. Additionally, the cluster means data was analyzed for k=3, k=4, k-5, and k=6 considering the expected results given economic and corporate indicators and movements in the S&amp;P 500 index. It was therefore determined that k=4 was the optimal number of clusters with sizes of 69, 1, 38, and 15. Although one cluster had only “1” data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios. In this context, extreme events that become predictable using kmeans may be useful to traders.</p>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
-<div class="cell">
-
-</div>
+<p>The kmeans centroids delivered results that would be expected as follows:</p>
+<p>• Cluster 1: the moderate increase of the S&amp;P 500 of this cluster mean was ≈ 0.51 which was clustered with a slight increase in consumer price index ≈ 0.04 (a metric to reflect inflation), a small increase in long interest rate ≈ 0.17 (this often occurs when the Federal Reserve responds to increasing inflation with interest rate increases often correlated to increasing stock market pricing), a small increase in real earnings ≈ 0.20, a significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase), and a small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks when stock market returns are deemed favorable) <span class="citation" data-cites="bosco2018stock">(<a href="#ref-bosco2018stock" role="doc-biblioref">Bosco and Khan 2018</a>)</span></p>
+<p>• Cluster 2: only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash which was clustered with a significant decrease in consumer price index (deflation), a significant decrease in long interest rates (the Federal Reserve rapidly cutting interest rates), a significant decrease in real earnings and CAPE, while total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds) <span class="citation" data-cites="bosco2018stock">(<a href="#ref-bosco2018stock" role="doc-biblioref">Bosco and Khan 2018</a>)</span>.</p>
+<p>• Cluster 3: a moderate decline in the stock market ≈ -0.39 was clustered with moderate deflation, real earnings loss, a CAPE decrease, and a moderate return in bonds.</p>
+<p>• Cluster 4: a significant decline in the stock market ≈ -0.90 was clustered with a significant increase in consumer price index ≈ 1.23 (inflation), a significant long interest rate increase ≈ 1.34, a small decline in real earnings ≈ -0.20, a significant decline in CAPE ≈ -1.12, and a significant decline in total bond return of ≈ -1.60.</p>
+<p>The cluster means provided correlating metrics that a trader could potentially use to reap better gains when investing in the S&amp;P 500. For example, both inflationary and deflationary cycles led to stock market losses <span class="citation" data-cites="bosco2018stock">(<a href="#ref-bosco2018stock" role="doc-biblioref">Bosco and Khan 2018</a>)</span>. These losses were also reflected in the CAPE ratios. Stock market increases were correlated with insignificant inflationary pressures correlated with earnings increases and a positive CAPE. Traders could potentially use all of these factors as signals of when to buy and sell the S&amp;P 500 thereby watching long interest rate, consumer price index, earnings, bond returns, and CAPE ratios to optimize the purchase and sale of the S&amp;P 500 index demonstrating the utility of kmeans analysis.</p>
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-</section>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Ahmed, M., Seraj, R., &amp; Islam, S. M. S. (2020). The k-means algorithm: A comprehensive survey and performance evaluation. Electronics, 9(8), 1295.</p>
-<p>Babu, M. S., Geethanjali, N., &amp; Satyanarayana, B. (2012). Clustering approach to stock market prediction. International Journal of Advanced Networking and Applications, 3(4), 1281.</p>
-<p>Bini, B. S., &amp; Mathew, T. (2016). Clustering and regression techniques for stock prediction. Procedia Technology, 24, 1248-1255.</p>
-<p>Bosco, J., Khan, F. (2018). Stock Market Prediction and Efficiency Analysis Using Recurrent Neural Network. Germany: GRIN Verlag.</p>
-<p>Fang, &amp; Chiao, C. (2021). Research on prediction and recommendation of financial stocks based on K-means clustering algorithm optimization. Journal of Computational Methods in Sciences and Engineering, 21(5), 1081–1089. https://doi.org/10.3233/JCM-204716</p>
-<p>Géron, A. (2022). Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow. ” O’Reilly Media, Inc.”.</p>
-<p>Kassambara, A., &amp; Mundt, F. (2023). Factoextra: Extract and visualize the results of multivariate data anaysis. Retrieved from CRAN: https://CRAN.R-project.org</p>
-<p>Maechler, M. (2023). NbClust: Finding groups in data. Retrieved from CRAN package: https://CRAN.R-project.org</p>
-<p>Malik, &amp; Tuckfield, B. (2019). Applied unsupervised learning with R: Uncover hidden relationships and patterns with K-Means clustering, hierarchical clustering, and PCA (1st edition). Packt Publishing Ltd.</p>
-<p>Ossareh, Pourjafar, M. S., &amp; Kopczewski, T. (2021). Cognitive Biases on the Iran Stock Exchange: Unsupervised Learning Approach to Examining Feature Bundles in Investors’ Portfolios. Applied Sciences, 11(22), 10916–. https://doi.org/10.3390/app112210916</p>
-<p>Shiller, R. J. (2015). Irrational exuberance. In Irrational exuberance. Princeton university press.</p>
-<p>Soofi , Mohseni , M., &amp; Momeni , M. (2015). Clustering Stock Market Companies via K- Means Algorithm. Kuwait Chapter of Arabian Journal of Business &amp; Management Review, 4(5), 1–10. https://doi.org/10.12816/0018959</p>
-<p>S&amp;P Dow Jones Indices. (2023). S&amp;P 500. Retrieved from https://www.spglobal.com/spdji/en/indices/equity/sp-500/#overview</p>
-<p>Yedla, M., Pathakota, S. R., &amp; Srinivasa, T. M. (2010). Enhancing K-means clustering algorithm with improved initial center. International Journal of computer science and information technologies, 1(2), 121-125.</p>
-<p>Yuan, C., &amp; Yang, H. (2019). Research on K-value selection method of K-means clustering algorithm. J, 2(2), 226-235.</p>
-<p>Zuhroh, Rofik, M., &amp; Echchabi, A. (2021). Banking stock price movement and macroeconomic indicators: k-means clustering approach. Cogent Business &amp; Management, 8(1), 1–10. https://doi.org/10.1080/23311975.2021.1980247</p>
+<p>For stock market traders and speculators, predicting market moves within the S&amp;P 500 can significantly improve portfolio performance. Although there are many statistical methods that can assist in identifying buy and sell signals within the stock market, the K-means unsupervised learning algorithm can be helpful in recognizing metrics that traders can consider when managing their portfolio. Of the metrics available from the dataset, it was concluded that the composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio (adjusted and total), and real total bond return were the most germane in the context of K-means clustering. Determining the optimum number of clusters was difficult due to an inconsistency amongst the various clustering algorithms; therefore, a combination of visualization, results from the algorithms, and an understanding of market trends and predictions assisted in concluding that 4 clusters was the ideal. The results demonstrated that changes in the S&amp;P 500 composite index moved in correlation with corporate earnings and price changes as well as macroeconomic indicators as expected based on market past performance and economic theory. Therefore, a speculator should take into consideration the aforementioned metrics identified through K-means when determining buy and sell triggers as it relates to the S&amp;P 500 index of stocks.</p>
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">

@@ -11,9 +11,9 @@ bibliography: references.bib # file contains bibtex for references
 ---
 
 ## Introduction
-Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stock [@momeni2015clustering]. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the k-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research].
+Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stocks or indexes [@momeni2015clustering]. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the K-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research].
 
-What is k-means clustering(KMC)? It is a version of unsupervised machine learning. Unsupervised learning would utilize algorithms to analyze and cluster datasets that are unlabeled [@malik2019applied]. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. [@Figure1] below shows a visual representation of k-means Then you must measure the distance between each objects and centroid and assigned to the correct groups until all objects have a group [@yuan2019research]. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:
+KMC is a version of unsupervised machine learning unsupervised machine learning utilizing  algorithms to analyze and cluster datasets that are unlabeled [@malik2019applied]. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. [@Figure1] below shows a visual representation of k-means. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group [@yuan2019research]. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:
 
 1.	Initial stage that partitioned the objects randomly into ‘k’ clusters.
 
@@ -30,15 +30,16 @@ include_graphics("Figure 1.png")
 Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)
 
 
-Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tell sellers to hold or to sale their stocks [@bini2016clustering]. KMC is overall a great algorithm, but it also does have limitations. Some of those limitations include the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research]. Other types of limitations include the inability to use all types of data with KMC [@ahmed2020k].
+Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tells sellers to hold or to sell their stocks [@bini2016clustering]. KMC does have limitations including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research]. Other types of limitations include the inability to use all types of data with KMC [@ahmed2020k].
 
 
 This paper provides the definition of KMC, some of the limitations of the methodology, as well as our analysis on how well KMC does handling stock data. 
 
 
 ## Methods
-There are several methods involved when selecting the most optimal number of clusters. This paper we looked at the elbow, silhouette, as well as the gap statistic method in order to see which was the best method to use.  
-The first method, Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE [@yuan2019research]. 
+There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, as well as the gap statistic methods.
+
+The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE [@yuan2019research]. 
 
 Steps to find the best cluster number using elbow method: 
 
@@ -50,11 +51,11 @@ Steps to find the best cluster number using elbow method:
  
   4. Once you plot the results will show in an elbow shape, the point found in the elbow shows SSE decreasing rapidly. That point is considered the optimal cluster number. 
 
-Silhouette Method – The silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters. 
+Silhouette Method – The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters. 
 Steps to find the best cluster number using silhouette method: 
 
 
-Gap Statistic Method - The gap statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. 
+Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. 
 
 $$
 G(k) = E_n(\log(W_k)) - \log(W_k) 
@@ -64,11 +65,11 @@ $$
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 $$
 
-As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is same as the actual number of classes in the dataset.
+As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With the elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is the same as the actual number of classes in the dataset.
 
 ### Euclidean Distance
 
-Calculating the distance for KMC can be achieved by a few different method. The default mostly used one is known as euclidean distance, this is used to calculate the distance between a point and it's initial cluster. 
+Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster. 
 $$
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 $$
@@ -82,6 +83,7 @@ The CAPE ratio has the purported advantage of measuring valuation over a ten-yea
 
 
 ### Data and Vizualisation
+The packages relevant to the project that were needed included factoextra(), NbClust(), and Cluster(). For example, factoextra can run the k-means algorithm along with visualizations. Also, NbClust() and Cluster() can assist in determining the optimal number of clusters and centroids. 
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
@@ -97,13 +99,17 @@ library(gridExtra)
 df<- read_csv("SPDatasetLAST.csv")
 #view the data headers
 head(df)
-# confirm the data is a dataframe
-class(df)
+```
+Scale() assists with standardizing the data so that it is comparable using “z-scores”.  
+
+```{r, warning=FALSE, echo=T, message=FALSE}
 # standardize the data having a standard normal with a mean of 0 and a standard deviation of 1
 df<-scale(df)
 #view the data
 head(df)
 ```
+
+The Elbow method was used to help determine the optimal number of clusters using the coded algorithm fviz_nbclust(). The elbow method used an unsupervised algorithm approach from a calculation known as the within-cluster sum of squares (WCSS) method.   
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #estimate the optimal number of clusters according to the number of bends (elbow method)
@@ -111,12 +117,14 @@ fviz_nbclust(df, kmeans, method = "wss") +
     geom_vline(xintercept = 4, linetype = 2)+
   labs(subtitle = "Elbow method")
 ```
+The Silhouette method is an unsupervised method to determine the optimum number of clusters. It uses a mathematical formula to measure how well a data point fits within a cluster through the Silhouette coefficient.
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #estimate the optimal number of clusters Silhouette method
 fviz_nbclust(df, kmeans, method = "silhouette")+
   labs(subtitle = "Silhouette method")
 ```
+The “Gap statistic method” is another algorithm that can be used to identify the optimum number of clusters. The method standardizes the data using a logarithmic function.  
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #estimate the optimal number of clusters with the 'gap statistics' method
@@ -124,12 +132,14 @@ fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
   labs(subtitle = "Gap statistic method")
 ```
 
+The coded algorithm NbClust() uses 30 different methods to help determine the optimal number of clusters. The selected distance method was “Euclidean” which uses essentially Pythagorean theorem to find the relative distances between the data points. 
+
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
 nb <- NbClust(df, distance = "euclidean", min.nc = 2,
         max.nc = 10, method = "kmeans")
 ```
-
+The K-means algorithm coding: “K-means()” was used for differing number of centroids (k=3 through k=6) and analyzed for relevance.
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #test kmeans cluster for k=3, k=4 and k=5 for comparison
 k3 <- kmeans(df, centers = 3, nstart = 25)
@@ -137,6 +147,8 @@ k4 <- kmeans(df, centers = 4, nstart = 25)
 k5 <- kmeans(df, centers = 5, nstart = 25)
 k6 <- kmeans(df, centers = 6, nstart = 25)
 ```
+
+The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids. In this case, k=3 through k=6.  
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # plots to compare
@@ -146,6 +158,7 @@ p3 <- fviz_cluster(k5, geom = "point",  data = df) + ggtitle("k = 5")
 p4 <- fviz_cluster(k6, geom = "point",  data = df) + ggtitle("k = 6")
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
+The output of K-means() was assigned to different data frames (final3 through final6) for further analyses and selection of the optimal number of clusters.  
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
@@ -155,6 +168,7 @@ final4 <- kmeans(df, 4, nstart = 25)
 final5 <- kmeans(df, 5, nstart = 25)
 final6 <- kmeans(df, 6, nstart = 25)
 ```
+Based on the analysis of the output data and visualizations, k=4 was selected and the results are displayed using the print().  
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster
@@ -167,102 +181,20 @@ The analysis made use of several R packages including the following:
 
 •	The “factoextra” package was used to calculate and visualize kmeans [@kassambara2023factoextra]. 
 
-The entire dataset included metrics that generated clusters that were not meaningful considering the expected result in terms of S&P 500 index returns versus economic and corporate data. Therefore, several trials were conducted until meaningful results and clusters were generated. The data was ‘normalized’ using scale() to allow for comparable data using z-score versus raw data.  Determining the optimal number of clusters considering the various methods returned inconsistent results as follows:
+The entire dataset included metrics that generated clusters that were not meaningful considering the expected result in terms of S&P 500 index returns versus economic and corporate data. Therefore, several trials were conducted until meaningful results and clusters were generated. The data was ‘normalized’ using scale() to allow for comparable data using z-score versus raw data.  Determining the optimal number of clusters considering the various methods returned inconsistent including Elbow method: 4 clusters, Silhouette method: 2, Gap statistic: 1, Humbert statistic: 5, D index: 4, and other proposed indices. Considering the lack of agreement in the optimal number of clusters, the visualizations were analyzed as were the cluster means. The visualization with k=4 provided well-defined clusters with minimal overlap. However, k=5 and k=6 visualizations had poorly defined clusters with significant overlap [@geron2022hands]. Additionally, the distance of the data from the centroids for cluster with k=4 visually appeared sufficiently small. The elbow method corresponded with k=4 where a ‘bend’ in the data was identified with four clusters. Also, the Dunn index indicated four clusters; this metric sets to identify clusters that are the most compact and well separated. Additionally, the cluster means data was analyzed for k=3, k=4, k-5, and k=6 considering the expected results given economic and corporate indicators and movements in the S&P 500 index. It was therefore determined that k=4 was the optimal number of clusters with sizes of 69, 1, 38, and 15. Although one cluster had only “1” data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios. In this context, extreme events that become predictable using kmeans may be useful to traders.
 
-•	Elbow method: 4 clusters
-
-•	Silhouette method: 2
-
-•	Gap statistic: 1
-
-•	Humbert statistic: 5
-
-•	D index: 4
-
-•	Among all other indices:
-
-  o	6 proposed 2 as the best number of clusters 
-  
-  o	2 proposed 3 as the best number of clusters 
-  
-  o	3 proposed 4 as the best number of clusters 
-  
-  o	6 proposed 5 as the best number of clusters 
-  
-  o	2 proposed 6 as the best number of clusters 
-  
-  o	1 proposed 7 as the best number of clusters 
-  
-  o	1 proposed 9 as the best number of clusters 
-  
-  o	3 proposed 10 as the best number of clusters
-  
-Considering the lack of agreement in the optimal number of clusters, the visualizations were analyzed as were the cluster means. The visualization with k=4 provided well-defined clusters with minimal overlap. However, k=5 and k=6 visualizations had poorly defined clusters with significant overlap [@geron2022hands]. Additionally, the distance of the data from the centroids for cluster with k=4 visually appeared sufficiently small. The elbow method corresponded with k=4 where a ‘bend’ in the data was identified with four clusters. Also, the Dunn index indicated four clusters; this metric sets to identify clusters that are the most compact and well separated. Additionally, the cluster means data was analyzed for k=3, k=4, k-5, and k=6 considering the expected results given economic and corporate indicators and movements in the S&P 500 index. It was therefore determined that k=4 was the optimal number of clusters with sizes of 69, 1, 38, and 15. Although one cluster had only “1” data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios. In this context, extreme events that become predictable using kmeans may be useful to traders.
-
+### Statistical Modeling
 The kmeans centroids delivered results that would be expected as follows:
 
   •	Cluster 1: the moderate increase of the S&P 500 of this cluster mean was ≈ 0.51 which was clustered with a slight increase in consumer price index ≈ 0.04 (a metric to reflect inflation), a small increase in long interest rate ≈ 0.17 (this often occurs when the Federal Reserve responds to increasing inflation with interest rate increases often correlated to increasing stock market pricing), a small increase in real earnings ≈ 0.20, a significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase), and a small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks when stock market returns are deemed favorable) [@bosco2018stock]
 
-  •	Cluster 2: only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash which was clustered with a significant decrease in consumer price index (deflation), a significant decrease in long interest rates (the Federal Reserve rapidly cutting interest rates), a significant decrease in real earnings and CAPE, while total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds).
+  •	Cluster 2: only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash which was clustered with a significant decrease in consumer price index (deflation), a significant decrease in long interest rates (the Federal Reserve rapidly cutting interest rates), a significant decrease in real earnings and CAPE, while total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds) [@bosco2018stock]. 
 
   •	Cluster 3: a moderate decline in the stock market ≈ -0.39 was clustered with moderate deflation, real earnings loss, a CAPE decrease, and a moderate return in bonds.
 
   •	Cluster 4: a significant decline in the stock market ≈ -0.90 was clustered with a significant increase in consumer price index ≈ 1.23 (inflation), a significant long interest rate increase ≈ 1.34, a small decline in real earnings ≈ -0.20, a significant decline in CAPE ≈ -1.12, and a significant decline in total bond return of ≈ -1.60. 
 
-The cluster means provided correlating metrics that a trader could potentially use to reap better gains when investing in the S&P 500. For example, both inflationary and deflationary cycles led to stock market losses. These losses were also reflected in the CAPE ratios. Stock market increases were correlated with insignificant inflationary pressures correlated with earnings increases and a positive CAPE. Traders could potentially use all of these factors as signals of when to buy and sell the S&P 500 thereby watching long interest rate, consumer price index, earnings, bond returns, and CAPE ratios to optimize the purchase and sale of the S&P 500 index demonstrating the utility of kmeans analysis.  
-
-
-### Statistical Modeling
-
-```{r, warning=FALSE, echo=T, message=FALSE}
-
-```
-
+The cluster means provided correlating metrics that a trader could potentially use to reap better gains when investing in the S&P 500. For example, both inflationary and deflationary cycles led to stock market losses [@bosco2018stock]. These losses were also reflected in the CAPE ratios. Stock market increases were correlated with insignificant inflationary pressures correlated with earnings increases and a positive CAPE. Traders could potentially use all of these factors as signals of when to buy and sell the S&P 500 thereby watching long interest rate, consumer price index, earnings, bond returns, and CAPE ratios to optimize the purchase and sale of the S&P 500 index demonstrating the utility of kmeans analysis. 
 
 ### Conclusion
-
-## References
-Ahmed, M., Seraj, R., & Islam, S. M. S. (2020). The k-means algorithm: A comprehensive survey and performance evaluation. Electronics, 9(8), 1295.
-
-Babu, M. S., Geethanjali, N., & Satyanarayana, B. (2012). Clustering approach to stock market prediction. International Journal of Advanced Networking and Applications, 3(4), 1281.
-
-Bini, B. S., & Mathew, T. (2016). Clustering and regression techniques for stock prediction. Procedia Technology, 24, 1248-1255.
-
-Bosco, J., Khan, F. (2018). Stock Market Prediction and Efficiency Analysis Using Recurrent Neural Network. Germany: GRIN Verlag.
-
-Fang, &amp; Chiao, C. (2021). Research on prediction and recommendation of financial stocks based
-on K-means clustering algorithm optimization. Journal of Computational Methods in Sciences
-and Engineering, 21(5), 1081–1089. https://doi.org/10.3233/JCM-204716
-
-Géron, A. (2022). Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow. " O'Reilly Media, Inc.".
-
-Kassambara, A., & Mundt, F. (2023). Factoextra: Extract and visualize the results of multivariate data anaysis. Retrieved from CRAN: https://CRAN.R-project.org
-
-Maechler, M. (2023). NbClust: Finding groups in data. Retrieved from CRAN package: https://CRAN.R-project.org
-
-Malik, &amp; Tuckfield, B. (2019). Applied unsupervised learning with R: Uncover hidden
-relationships and patterns with K-Means clustering, hierarchical clustering, and PCA (1st
-edition). Packt Publishing Ltd.
-
-Ossareh, Pourjafar, M. S., &amp; Kopczewski, T. (2021). Cognitive Biases on the Iran Stock
-Exchange: Unsupervised Learning Approach to Examining Feature Bundles in Investors’
-Portfolios. Applied Sciences, 11(22), 10916–. https://doi.org/10.3390/app112210916
-
-Shiller, R. J. (2015). Irrational exuberance. In Irrational exuberance. Princeton university press.
-
-Soofi , Mohseni , M., &amp; Momeni , M. (2015). Clustering Stock Market Companies via K- Means
-Algorithm. Kuwait Chapter of Arabian Journal of Business &amp; Management Review, 4(5), 1–10.
-https://doi.org/10.12816/0018959
-
-S&P Dow Jones Indices. (2023). S&P 500. Retrieved from https://www.spglobal.com/spdji/en/indices/equity/sp-500/#overview
-
-Yedla, M., Pathakota, S. R., & Srinivasa, T. M. (2010). Enhancing K-means clustering algorithm with improved initial center. International Journal of computer science and information technologies, 1(2), 121-125.
-
-Yuan, C., & Yang, H. (2019). Research on K-value selection method of K-means clustering algorithm. J, 2(2), 226-235.
-
-Zuhroh, Rofik, M., &amp; Echchabi, A. (2021). Banking stock price movement and
-macroeconomic indicators: k-means clustering approach. Cogent Business &amp; Management,
-8(1), 1–10. https://doi.org/10.1080/23311975.2021.1980247
-
-
-
+For stock market traders and speculators, predicting market moves within the S&P 500 can significantly improve portfolio performance. Although there are many statistical methods that can assist in identifying buy and sell signals within the stock market, the K-means unsupervised learning algorithm can be helpful in recognizing metrics that traders can consider when managing their portfolio. Of the metrics available from the dataset, it was concluded that the composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio (adjusted and total), and real total bond return were the most germane in the context of K-means clustering. Determining the optimum number of clusters was difficult due to an inconsistency amongst the various clustering algorithms; therefore, a combination of visualization, results from the algorithms, and an understanding of market trends and predictions assisted in concluding that 4 clusters was the ideal. The results demonstrated that changes in the S&P 500 composite index moved in correlation with corporate earnings and price changes as well as macroeconomic indicators as expected based on market past performance and economic theory. Therefore, a speculator should take into consideration the aforementioned metrics identified through K-means when determining buy and sell triggers as it relates to the S&P 500 index of stocks.
