@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-07-22">
+<meta name="dcterms.date" content="2023-07-23">
 
 <title>K-means Clustering Using Stocks Data</title>
 <style>
@@ -147,7 +147,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 22, 2023</p>
+      <p class="date">July 23, 2023</p>
     </div>
   </div>
     
@@ -181,7 +181,7 @@ div.csl-indent {
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, gap statistic, hubert statistic, and Dindex methods.</p>
+<p>There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, and gap statistics method.</p>
 <p>The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>.</p>
 <p>Steps to find the best cluster number using elbow method:</p>
 <ol type="1">
@@ -196,8 +196,7 @@ G(k) = E_n(\log(W_k)) - \log(W_k)
 \]</span></p>
 <p><span class="math display">\[
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
-\]</span> Hubert Statistic Method -</p>
-<p>Dindex Method -</p>
+\]</span></p>
 <p><strong>Euclidean Distance</strong></p>
 <p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster <span class="citation" data-cites="yedla2010enhancing">(<a href="#ref-yedla2010enhancing" role="doc-biblioref">Yedla, Pathakota, and Srinivasa 2010</a>)</span>. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. <span class="math display">\[
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}

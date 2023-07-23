@@ -34,7 +34,7 @@ Due to some of the limitations of KMC, we also reviewed some proposed improvemen
 
 
 ## Methods
-There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, gap statistic, hubert statistic, and Dindex methods.
+There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, and gap statistics method.
 
 The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE [@yuan2019research]. 
 
@@ -58,9 +58,6 @@ $$
 $$
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 $$
-Hubert Statistic Method - 
-
-Dindex Method - 
 
 **Euclidean Distance**
 
