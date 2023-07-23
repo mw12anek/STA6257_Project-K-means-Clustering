@@ -11,9 +11,9 @@ bibliography: references.bib # file contains bibtex for references
 ---
 
 ## Introduction
-Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stocks or indexes [@momeni2015clustering]. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity.Clustering algorithms, such as the K-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research].
+Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stocks or indexes [@momeni2015clustering]. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity [@zuhroh2021banking]. Clustering algorithms, such as the K-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research].
 
-KMC is a version of unsupervised machine learning unsupervised machine learning utilizing  algorithms to analyze and cluster datasets that are unlabeled [@malik2019applied]. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. [@Figure1] below shows a visual representation of k-means. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group [@yuan2019research]. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:
+KMC is a version of unsupervised machine learning unsupervised machine learning utilizing  algorithms to analyze and cluster datasets that are unlabeled [@malik2019applied]. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. @Figure 1 below shows a visual representation of k-means. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group [@yuan2019research]. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:
 
 1.	Initial stage that partitioned the objects randomly into ‘k’ clusters.
 
@@ -23,21 +23,21 @@ KMC is a version of unsupervised machine learning unsupervised machine learning 
 
 4.	The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce [@momeni2015clustering]. 
 
-```{r pressure, echo=FALSE, fig.cap="Figure 1", out.width = '100%'}
+```{r pressure, echo=FALSE, fig.cap="Figure 1: Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)", out.width = '80%'}
 knitr::include_graphics("Figure 1.png")
 ```
 
 Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)
 
 
-Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tells sellers to hold or to sell their stocks [@bini2016clustering]. KMC does have limitations including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research]. Other types of limitations include the inability to use all types of data with KMC [@ahmed2020k].
+Stocks data can be predicted using both qualititative and quantitative company information, some studies discovered that qualitative information does a better job at predicting stocks. Qualitative data uses information such as how the company performs versus quantitative data using numbers such as a company assets [@babu2012clustering]. Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tells sellers to hold or to sell their stocks [@bini2016clustering]. KMC does have limitations including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research]. Other types of limitations include the inability to use all types of data with KMC [@ahmed2020k].
 
 
-This paper provides the definition of KMC, some of the limitations of the methodology, as well as our analysis on how well KMC does handling stock data. 
+Due to some of the limitations of KMC, we also reviewed some proposed improvements. One of the proposed resolution is the fact that there is a need for better initial centroids, and the way to do so is by sorting the data points distance-wise and separating them into equal sets. By partitioning the data in a sorted method leads to better results. The authors then reassign the data points to the correct clusters by looking at the distance between the centroid to whichever cluster is closest [@yedla2010enhancing]. The time complexity involved with k-means clustering was also addressed. The proposed method uses a heap sort method, which is O(nlogn); combining that with the time complexity, we still see that time complexity is O(nlogn) on average. This confirms that the proposed method in this article is more efficient than the original k-means clustering. The experimental results also corroborate this. This paper provides an overview of KMC, some of the limitations of the methodology, improvements, as well as our analysis on how well KMC does handling stock data. 
 
 
 ## Methods
-There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, as well as the gap statistic methods.
+There are several methods involved when selecting the optimal number of clusters. This paper we considered the elbow, silhouette, gap statistic, hubert statistic, and Dindex methods.
 
 The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE [@yuan2019research]. 
 
@@ -51,11 +51,15 @@ Steps to find the best cluster number using elbow method:
  
   4. Once you plot the results will show in an elbow shape, the point found in the elbow shows SSE decreasing rapidly. That point is considered the optimal cluster number. 
 
-Silhouette Method – The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters. 
-Steps to find the best cluster number using silhouette method: 
-
+Silhouette Method – The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters [@ossareh2021cognitive]. 
 
 Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. 
+
+Hubert Statistic Method - 
+
+Dindex Method - 
+
+
 
 $$
 G(k) = E_n(\log(W_k)) - \log(W_k) 
@@ -69,7 +73,7 @@ As number of clusters increase, the sum of squares error (SSE) within the cluste
 
 **Euclidean Distance**
 
-Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster. 
+Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster [@yedla2010enhancing]. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. 
 $$
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 $$
