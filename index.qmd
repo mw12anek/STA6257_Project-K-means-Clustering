@@ -27,9 +27,6 @@ KMC is a version of unsupervised machine learning unsupervised machine learning 
 knitr::include_graphics("Figure 1.png")
 ```
 
-Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)
-
-
 Stocks data can be predicted using both qualititative and quantitative company information, some studies discovered that qualitative information does a better job at predicting stocks. Qualitative data uses information such as how the company performs versus quantitative data using numbers such as a company assets [@babu2012clustering]. Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tells sellers to hold or to sell their stocks [@bini2016clustering]. KMC does have limitations including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum [@fang2021research]. Other types of limitations include the inability to use all types of data with KMC [@ahmed2020k].
 
 
@@ -54,13 +51,6 @@ Steps to find the best cluster number using elbow method:
 Silhouette Method – The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters [@ossareh2021cognitive]. 
 
 Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. 
-
-Hubert Statistic Method - 
-
-Dindex Method - 
-
-
-
 $$
 G(k) = E_n(\log(W_k)) - \log(W_k) 
 $$
@@ -68,8 +58,9 @@ $$
 $$
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 $$
+Hubert Statistic Method - 
 
-As number of clusters increase, the sum of squares error (SSE) within the cluster decreases because the data points gets closer to their respective cluster center. With the elbow method the objective is to find k where SSE decreases most rapidly. Therefore, from figure it can be seen that the optimal number of clusters is 3. This is the same as the actual number of classes in the dataset.
+Dindex Method - 
 
 **Euclidean Distance**
 
