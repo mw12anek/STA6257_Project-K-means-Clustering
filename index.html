@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-07-23">
+<meta name="dcterms.date" content="2023-07-26">
 
 <title>K-means Clustering Using Stocks Data</title>
 <style>
@@ -147,7 +147,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 23, 2023</p>
+      <p class="date">July 26, 2023</p>
     </div>
   </div>
     
@@ -222,10 +222,11 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># read csv file into R</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"SPDatasetLAST.csv"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#view the data headers</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># read csv file into R</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"SPDatasetLAST.csv"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#view the data headers</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
@@ -274,15 +275,99 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 [5,]                 0.9936749                          -0.7642882
 [6,]                -0.6890358                          -1.7469219</code></pre>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">SPCompIndexPercentChange</th>
+<th style="text-align: right;">CPIPercentChange</th>
+<th style="text-align: right;">LongInterestRatePercentChange</th>
+<th style="text-align: right;">RealEarningsPercentChange</th>
+<th style="text-align: right;">CyclicallyAdjPEPercentageChange</th>
+<th style="text-align: right;">CAPETotalPercentageChange</th>
+<th style="text-align: right;">RealTotalBondReturnPercentageChange</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.8965934</td>
+<td style="text-align: right;">0.2026588</td>
+<td style="text-align: right;">1.0060604</td>
+<td style="text-align: right;">-0.0869839</td>
+<td style="text-align: right;">0.8407465</td>
+<td style="text-align: right;">0.8474031</td>
+<td style="text-align: right;">-0.9274587</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.3396187</td>
+<td style="text-align: right;">1.6529928</td>
+<td style="text-align: right;">0.2579556</td>
+<td style="text-align: right;">-0.2818001</td>
+<td style="text-align: right;">0.1198802</td>
+<td style="text-align: right;">0.1423810</td>
+<td style="text-align: right;">-0.6077692</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.3396187</td>
+<td style="text-align: right;">0.0983269</td>
+<td style="text-align: right;">-0.2158457</td>
+<td style="text-align: right;">-0.0736157</td>
+<td style="text-align: right;">0.4154007</td>
+<td style="text-align: right;">0.4217869</td>
+<td style="text-align: right;">0.1363896</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0611314</td>
+<td style="text-align: right;">-0.9012484</td>
+<td style="text-align: right;">-1.1476315</td>
+<td style="text-align: right;">0.3626172</td>
+<td style="text-align: right;">0.1549720</td>
+<td style="text-align: right;">0.1611393</td>
+<td style="text-align: right;">1.2431075</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.8965934</td>
+<td style="text-align: right;">-0.1167998</td>
+<td style="text-align: right;">0.8654489</td>
+<td style="text-align: right;">0.2482291</td>
+<td style="text-align: right;">0.9826116</td>
+<td style="text-align: right;">0.9936749</td>
+<td style="text-align: right;">-0.7642882</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.4958433</td>
+<td style="text-align: right;">0.0365916</td>
+<td style="text-align: right;">1.8294544</td>
+<td style="text-align: right;">0.2183380</td>
+<td style="text-align: right;">-0.6941067</td>
+<td style="text-align: right;">-0.6890358</td>
+<td style="text-align: right;">-1.7469219</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <p>The Elbow method was used to help determine the optimal number of clusters using the coded algorithm fviz_nbclust(). The elbow method used an unsupervised algorithm approach from a calculation known as the within-cluster sum of squares (WCSS) method.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters according to the number of bends (elbow method)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"wss"</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">4</span>, <span class="at">linetype =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Elbow method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters according to the number of bends (elbow method)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"wss"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">4</span>, <span class="at">linetype =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Elbow method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
@@ -292,9 +377,9 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters Silhouette method</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"silhouette"</span>)<span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Silhouette method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters Silhouette method</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">"silhouette"</span>)<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Silhouette method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
@@ -304,9 +389,9 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters with the 'gap statistics' method</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">nstart =</span> <span class="dv">25</span>,  <span class="at">method =</span> <span class="st">"gap_stat"</span>, <span class="at">nboot =</span> <span class="dv">50</span>)<span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Gap statistic method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#estimate the optimal number of clusters with the 'gap statistics' method</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">nstart =</span> <span class="dv">25</span>,  <span class="at">method =</span> <span class="st">"gap_stat"</span>, <span class="at">nboot =</span> <span class="dv">50</span>)<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Gap statistic method"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
@@ -316,9 +401,9 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(df, <span class="at">distance =</span> <span class="st">"euclidean"</span>, <span class="at">min.nc =</span> <span class="dv">2</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">max.nc =</span> <span class="dv">10</span>, <span class="at">method =</span> <span class="st">"kmeans"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(df, <span class="at">distance =</span> <span class="st">"euclidean"</span>, <span class="at">min.nc =</span> <span class="dv">2</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">max.nc =</span> <span class="dv">10</span>, <span class="at">method =</span> <span class="st">"kmeans"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
@@ -362,23 +447,23 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#test kmeans cluster for k=3, k=4 and k=5 for comparison</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>k6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#test kmeans cluster for k=3, k=4 and k=5 for comparison</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>k6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids. In this case, k=3 through k=6.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots to compare</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 3"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 4"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 5"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k6, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 6"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plots to compare</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 3"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 4"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 5"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k6, <span class="at">geom =</span> <span class="st">"point"</span>,  <span class="at">data =</span> df) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"k = 6"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, p4, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
@@ -388,20 +473,20 @@ d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>final3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>final4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>final5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>final6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>final3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>final4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>final5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>final6 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="dv">6</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Based on the analysis of the output data and visualizations, k=4 was selected and the results are displayed using the print().</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(final4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(final4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>K-means clustering with 4 clusters of sizes 69, 1, 38, 15

@@ -87,6 +87,7 @@ library(NbClust)
 library(factoextra)
 library("dplyr")
 library(gridExtra)
+library(knitr)
 # read csv file into R
 df<- read_csv("SPDatasetLAST.csv")
 #view the data headers
@@ -99,6 +100,7 @@ Scale() assists with standardizing the data so that it is comparable using “z-
 df<-scale(df)
 #view the data
 head(df)
+kable(head(df))
 ```
 
 The Elbow method was used to help determine the optimal number of clusters using the coded algorithm fviz_nbclust(). The elbow method used an unsupervised algorithm approach from a calculation known as the within-cluster sum of squares (WCSS) method.   
