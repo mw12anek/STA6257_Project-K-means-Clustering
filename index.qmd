@@ -52,7 +52,8 @@ Steps to find the best cluster number using elbow method:
 
 Silhouette Method - The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters [@ossareh2021cognitive].
 
-Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. $$
+Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. 
+$$
 G(k) = E_n(\log(W_k)) - \log(W_k) 
 $$
 
@@ -60,11 +61,15 @@ $$
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 $$
 
+
 **Euclidean Distance**
 
-Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster [@yedla2010enhancing]. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. $$
+Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster [@yedla2010enhancing]. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. 
+
+$$
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 $$
+
 
 ## Analysis and Results
 

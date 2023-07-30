@@ -4,15 +4,19 @@ author: "Michael Wanek, Woodny Dorceans"
 date: '`r Sys.Date()`'
 format: revealjs
 course: STA 6257 - Advance Statistical Modeling
+bibliography: references.bib # file contains bibtex for references
+#always_allow_html: true # this allows to get PDF with HTML features
 ---
 
 ## Introduction
 
-KMC is a version of unsupervised machine learning utilizing algorithms to analyze and cluster data-sets that are unlabeled. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group.
+-   KMC unsupervised machine learning
 
-## K-Means Process
+-   Analyze and cluster data-sets that are unlabeled
 
-#### The stages of the KMC algorithm were as follows:
+-   K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group.
+
+## K-Means Process {.smaller}
 
 1\. Initial stage that partitioned the objects randomly into 'k' clusters.
 
@@ -24,7 +28,7 @@ KMC is a version of unsupervised machine learning utilizing algorithms to analyz
 
 ![K-Means Cluster](Figure%201.png){fig-align="center"}
 
-### K-Means Limitations
+## K-Means Limitations
 
 -   Determination of the number of 'k clusters',
 
@@ -36,6 +40,7 @@ KMC is a version of unsupervised machine learning utilizing algorithms to analyz
 
 ## Methods
 
+::: panel-tabset
 ## Elbow
 
 The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE
@@ -46,18 +51,228 @@ The Silhouette method is used to determine how well data points fits into their 
 
 ## Gap Statistic
 
-The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number.
+The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion.
 
-### Euclidean Distance
+$G(k) = E_n(\log(W_k)) - \log(W_k)$
 
-Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.
+$W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})$
+:::
 
-## Code
+## Euclidean Distance
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+::: columns
+::: {.column width="60%"}
+-   Used to calculate the distance between a point and it's initial cluster.
+
+-   The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.
+:::
+
+::: {.column width="40%"}
+$$
+d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}} 
+$$
+:::
+:::
+
+## Analysis and Results {.smaller}
+
+-   S&P 500 index dataset
+
+-   Composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio or CAPE, and real total bond return
+
+-   Converted to month-by-month percentage changes to make meaningful clusters from 2012 to present
+
+-   Robert Shiller's CAPE measures valuation over a ten-year period to smooth out random fluctuations and signals undervalued or overvalued indexes or stocks
+
+<div>
+
+$$
+\text{Cyclically adjusted price - to - earnings ratio} = \frac{\text{Share Price}}{{\text{(10-year Inflation Adjusted Average Earnings)}}}
+$$
+
+</div>
+
+## Data and Visualization {.smaller}
 
 ```{r}
-1 + 1
+# loading packages 
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(cluster)
+library(NbClust)
+library(factoextra)
+library("dplyr")
+library(gridExtra)
+library(knitr)
+# read csv file into R
+df<- read_csv("SPDatasetLAST.csv")
+#view the data headers
+head(df)
+```
 
+```{r}
+# standardize the data having a standard normal with a mean of 0 and a standard deviation of 1
+df<-scale(df)
+```
+
+-   R packages relevant to the project included factoextra(), NbClust(), and Cluster().
+
+-   Scale() in R was used standardize (normalize) the data for relevant comparison.
+
+```{r}
+kable(head(df))
 
 ```
+
+## Data and Visualization (Methods) {.smaller}
+
+::: panel-tabset
+## Elbow
+
+-   Elbow Method to determine the optimal number of clusters using fviz_nbclust().
+
+```{r}
+#estimate the optimal number of clusters according to the number of bends (elbow method)
+fviz_nbclust(df, kmeans, method = "wss") +
+    geom_vline(xintercept = 4, linetype = 2)+
+  labs(subtitle = "Elbow method")
+
+```
+
+## Silhouette
+
+-   Silhouette Method to determine the optimum number of clusters; it measures how well a data point fits within a cluster using the Silhouette Coefficient.
+
+```{r}
+#estimate the optimal number of clusters Silhouette method
+fviz_nbclust(df, kmeans, method = "silhouette")+
+  labs(subtitle = "Silhouette method")
+
+```
+
+## Gap Statistic
+
+-   Gap Statistic Method to identify the optimum number of clusters using a logarithmic function.
+
+```{r}
+#estimate the optimal number of clusters with the 'gap statistics' method
+fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
+  labs(subtitle = "Gap statistic method")
+
+```
+
+## NbClust
+
+-   NbClust() uses 30 different methods determine the optimal number of clusters using the "Euclidean" algorithm (Pythagorean Theorem) to find the relative distances between the data points.
+
+```{r}
+#NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
+nb <- NbClust(df, distance = "euclidean", min.nc = 2,
+        max.nc = 10, method = "kmeans")
+
+```
+:::
+
+## Data & Visualization {.smaller}
+
+```{r}
+#test kmeans cluster for k=3, k=4 and k=5 for comparison
+k3 <- kmeans(df, centers = 3, nstart = 25)
+k4 <- kmeans(df, centers = 4, nstart = 25)
+k5 <- kmeans(df, centers = 5, nstart = 25)
+k6 <- kmeans(df, centers = 6, nstart = 25)
+
+```
+
+```{r}
+# plots to compare
+p1 <- fviz_cluster(k3, geom = "point", data = df) + ggtitle("k = 3")
+p2 <- fviz_cluster(k4, geom = "point",  data = df) + ggtitle("k = 4")
+p3 <- fviz_cluster(k5, geom = "point",  data = df) + ggtitle("k = 5")
+p4 <- fviz_cluster(k6, geom = "point",  data = df) + ggtitle("k = 6")
+grid.arrange(p1, p2, p3, p4, nrow = 2)
+
+```
+
+-   The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids: k=3 through k=6.
+
+## Data & Visualization {.smaller}
+
+```{r}
+#Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
+set.seed(123)
+final3 <- kmeans(df, 3, nstart = 25)
+final4 <- kmeans(df, 4, nstart = 25)
+final5 <- kmeans(df, 5, nstart = 25)
+final6 <- kmeans(df, 6, nstart = 25)
+
+```
+
+```{r}
+#view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster
+print(final4)
+
+```
+
+-   Based on the analysis of the output data and visualizations, k=4 was selected
+
+-   Although one cluster had only "1" data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios.
+
+## Statistical Modeling {.smaller}
+
+::: panel-tabset
+## Cluster 1
+
+-   Moderate increase of S&P 500 with cluster mean ≈ 0.51
+
+-   Slight increase in CPI ≈ 0.04 (a metric to reflect inflation)
+
+-   Small increase in long interest rate ≈ 0.17 (Federal Reserve responds to increasing inflation)
+
+-   Small increase in real earnings ≈ 0.20
+
+-   Significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase)
+
+-   Small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks)
+
+## Cluster 2
+
+-   Only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash
+
+-   Multi standard deviation decrease in:
+
+    -   Consumer price index (deflation)
+
+    -   Long interest rates (the Federal Reserve rapidly cutting interest rates)
+
+    -   Real earnings and CAPE
+
+-   Total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds)
+
+## Cluster 4
+
+-   Significant decline in the stock market ≈ -0.90
+
+-   Significant increase in consumer price index ≈ 1.23 (inflation)
+
+-   Significant long interest rate increase ≈ 1.34
+
+-   Small decline in real earnings ≈ -0.20
+
+-   Significant decline in CAPE ≈ -1.12
+
+-   Significant decline in total bond return of ≈ -1.60
+:::
+
+## Conclusion {.smaller}
+
+-   K-means provided correlating metrics that a trader could potentially use to reap better gains when investing in the S&P 500
+
+-   Traders could use K-means as a signal to buy and sell the S&P 500
+
+-   Monitor long interest rate, consumer price index, earnings, bond returns, and CAPE ratios to optimize a portfolio
+
+-   Combining K-means with other statistical tools, like regression analysis, could serve as beneficial predictors of the market
+
+-   The statistician must be judicious when determining the number of clusters

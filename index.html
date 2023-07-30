@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-07-29">
+<meta name="dcterms.date" content="2023-07-30">
 
 <title>K-means Clustering Using Stocks Data</title>
 <style>
@@ -147,7 +147,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 29, 2023</p>
+      <p class="date">July 30, 2023</p>
     </div>
   </div>
     
@@ -199,7 +199,8 @@ G(k) = E_n(\log(W_k)) - \log(W_k)
 W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})
 \]</span></p>
 <p><strong>Euclidean Distance</strong></p>
-<p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster <span class="citation" data-cites="yedla2010enhancing">(<a href="#ref-yedla2010enhancing" role="doc-biblioref">Yedla, Pathakota, and Srinivasa 2010</a>)</span>. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed. <span class="math display">\[
+<p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster <span class="citation" data-cites="yedla2010enhancing">(<a href="#ref-yedla2010enhancing" role="doc-biblioref">Yedla, Pathakota, and Srinivasa 2010</a>)</span>. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.</p>
+<p><span class="math display">\[
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 \]</span></p>
 </section>

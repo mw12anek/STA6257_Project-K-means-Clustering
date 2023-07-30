@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="Michael Wanek, Woodny Dorceans">
-  <meta name="dcterms.date" content="2023-07-29">
+  <meta name="dcterms.date" content="2023-07-30">
   <title>K-means Clustering Using Stocks Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -327,22 +327,27 @@
 <section id="title-slide" class="center">
   <h1 class="title">K-means Clustering Using Stocks Data</h1>
   <p class="author">Michael Wanek, Woodny Dorceans</p>
-  <p class="date">2023-07-29</p>
+  <p class="date">2023-07-30</p>
 </section>
 
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
-<p>KMC is a version of unsupervised machine learning utilizing algorithms to analyze and cluster data-sets that are unlabeled. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group.</p>
+<ul>
+<li><p>KMC unsupervised machine learning</p></li>
+<li><p>Analyze and cluster data-sets that are unlabeled</p></li>
+<li><p>K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group.</p></li>
+</ul>
 </section>
-<section id="k-means-process" class="slide level2">
+<section id="k-means-process" class="slide level2 smaller">
 <h2>K-Means Process</h2>
-<h4 id="the-stages-of-the-kmc-algorithm-were-as-follows">The stages of the KMC algorithm were as follows:</h4>
 <p>1. Initial stage that partitioned the objects randomly into ‘k’ clusters.</p>
 <p>2. The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.</p>
 <p>3. The improvement stage where objects were assigned to the cluster with the nearest center.</p>
 <p>4. The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce.</p>
 
-<img data-src="Figure%201.png" class="r-stretch quarto-figure-center"><p class="caption">K-Means Cluster</p><h3 id="k-means-limitations">K-Means Limitations</h3>
+<img data-src="Figure%201.png" class="r-stretch quarto-figure-center"><p class="caption">K-Means Cluster</p></section>
+<section id="k-means-limitations" class="slide level2">
+<h2>K-Means Limitations</h2>
 <ul>
 <li><p>Determination of the number of ‘k clusters’,</p></li>
 <li><p>Different distance calculation methods</p></li>
@@ -352,29 +357,348 @@
 </section>
 <section id="methods" class="slide level2">
 <h2>Methods</h2>
-</section>
-<section id="elbow" class="slide level2">
-<h2>Elbow</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Elbow</a></li><li><a href="#tabset-1-2">Silhouette</a></li><li><a href="#tabset-1-3">Gap Statistic</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <p>The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE</p>
-</section>
-<section id="silhouette" class="slide level2">
-<h2>Silhouette</h2>
+</div>
+<div id="tabset-1-2">
 <p>The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters</p>
+</div>
+<div id="tabset-1-3">
+<p>The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion.</p>
+<p><span class="math inline">\(G(k) = E_n(\log(W_k)) - \log(W_k)\)</span></p>
+<p><span class="math inline">\(W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb})\)</span></p>
+</div>
+</div>
+</div>
 </section>
-<section id="gap-statistic" class="slide level2">
-<h2>Gap Statistic</h2>
-<p>The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number.</p>
-<h3 id="euclidean-distance">Euclidean Distance</h3>
-<p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.</p>
+<section id="euclidean-distance" class="slide level2">
+<h2>Euclidean Distance</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li><p>Used to calculate the distance between a point and it’s initial cluster.</p></li>
+<li><p>The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.</p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[
+d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
+\]</span></p>
+</div>
+</div>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="analysis-and-results" class="slide level2 smaller">
+<h2>Analysis and Results</h2>
+<ul>
+<li><p>S&amp;P 500 index dataset</p></li>
+<li><p>Composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio or CAPE, and real total bond return</p></li>
+<li><p>Converted to month-by-month percentage changes to make meaningful clusters from 2012 to present</p></li>
+<li><p>Robert Shiller’s CAPE measures valuation over a ten-year period to smooth out random fluctuations and signals undervalued or overvalued indexes or stocks</p></li>
+</ul>
+<div>
+<p><span class="math display">\[
+\text{Cyclically adjusted price - to - earnings ratio} = \frac{\text{Share Price}}{{\text{(10-year Inflation Adjusted Average Earnings)}}}
+\]</span></p>
+</div>
+</section>
+<section id="data-and-visualization" class="slide level2 smaller">
+<h2>Data and Visualization</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code># A tibble: 6 × 7
+  SPCompIndexPercentChange CPIPercentChange LongInterestRatePercentChange
+                     &lt;dbl&gt;            &lt;dbl&gt;                         &lt;dbl&gt;
+1                     0.04          0.00296                        0.110 
+2                     0.02          0.00821                        0.0366
+3                     0.02          0.00258                       -0.0101
+4                     0.01         -0.00103                       -0.102 
+5                     0.04          0.00181                        0.0966
+6                    -0.01          0.00236                        0.192 
+# ℹ 4 more variables: RealEarningsPercentChange &lt;dbl&gt;,
+#   CyclicallyAdjPEPercentageChange &lt;dbl&gt;, CAPETotalPercentageChange &lt;dbl&gt;,
+#   RealTotalBondReturnPercentageChange &lt;dbl&gt;</code></pre>
 </div>
 </div>
+<div class="cell">
+
+</div>
+<ul>
+<li><p>R packages relevant to the project included factoextra(), NbClust(), and Cluster().</p></li>
+<li><p>Scale() in R was used standardize (normalize) the data for relevant comparison.</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table style="width:100%;">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">SPCompIndexPercentChange</th>
+<th style="text-align: right;">CPIPercentChange</th>
+<th style="text-align: right;">LongInterestRatePercentChange</th>
+<th style="text-align: right;">RealEarningsPercentChange</th>
+<th style="text-align: right;">CyclicallyAdjPEPercentageChange</th>
+<th style="text-align: right;">CAPETotalPercentageChange</th>
+<th style="text-align: right;">RealTotalBondReturnPercentageChange</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.8965934</td>
+<td style="text-align: right;">0.2026588</td>
+<td style="text-align: right;">1.0060604</td>
+<td style="text-align: right;">-0.0869839</td>
+<td style="text-align: right;">0.8407465</td>
+<td style="text-align: right;">0.8474031</td>
+<td style="text-align: right;">-0.9274587</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.3396187</td>
+<td style="text-align: right;">1.6529928</td>
+<td style="text-align: right;">0.2579556</td>
+<td style="text-align: right;">-0.2818001</td>
+<td style="text-align: right;">0.1198802</td>
+<td style="text-align: right;">0.1423810</td>
+<td style="text-align: right;">-0.6077692</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.3396187</td>
+<td style="text-align: right;">0.0983269</td>
+<td style="text-align: right;">-0.2158457</td>
+<td style="text-align: right;">-0.0736157</td>
+<td style="text-align: right;">0.4154007</td>
+<td style="text-align: right;">0.4217869</td>
+<td style="text-align: right;">0.1363896</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.0611314</td>
+<td style="text-align: right;">-0.9012484</td>
+<td style="text-align: right;">-1.1476315</td>
+<td style="text-align: right;">0.3626172</td>
+<td style="text-align: right;">0.1549720</td>
+<td style="text-align: right;">0.1611393</td>
+<td style="text-align: right;">1.2431075</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.8965934</td>
+<td style="text-align: right;">-0.1167998</td>
+<td style="text-align: right;">0.8654489</td>
+<td style="text-align: right;">0.2482291</td>
+<td style="text-align: right;">0.9826116</td>
+<td style="text-align: right;">0.9936749</td>
+<td style="text-align: right;">-0.7642882</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.4958433</td>
+<td style="text-align: right;">0.0365916</td>
+<td style="text-align: right;">1.8294544</td>
+<td style="text-align: right;">0.2183380</td>
+<td style="text-align: right;">-0.6941067</td>
+<td style="text-align: right;">-0.6890358</td>
+<td style="text-align: right;">-1.7469219</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="data-and-visualization-methods" class="slide level2 smaller">
+<h2>Data and Visualization (Methods)</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Elbow</a></li><li><a href="#tabset-2-2">Silhouette</a></li><li><a href="#tabset-2-3">Gap Statistic</a></li><li><a href="#tabset-2-4">NbClust</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<ul>
+<li>Elbow Method to determine the optimal number of clusters using fviz_nbclust().</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Slides_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<ul>
+<li>Silhouette Method to determine the optimum number of clusters; it measures how well a data point fits within a cluster using the Silhouette Coefficient.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-3">
+<ul>
+<li>Gap Statistic Method to identify the optimum number of clusters using a logarithmic function.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-4">
+<ul>
+<li>NbClust() uses 30 different methods determine the optimal number of clusters using the “Euclidean” algorithm (Pythagorean Theorem) to find the relative distances between the data points.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="Slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>*** : The Hubert index is a graphical method of determining the number of clusters.
+                In the plot of Hubert index, we seek a significant knee that corresponds to a 
+                significant increase of the value of the measure i.e the significant peak in Hubert
+                index second differences plot. 
+ </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img data-src="Slides_files/figure-revealjs/unnamed-chunk-7-2.png" width="960"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>*** : The D index is a graphical method of determining the number of clusters. 
+                In the plot of D index, we seek a significant knee (the significant peak in Dindex
+                second differences plot) that corresponds to a significant increase of the value of
+                the measure. 
+ 
+******************************************************************* 
+* Among all indices:                                                
+* 6 proposed 2 as the best number of clusters 
+* 2 proposed 3 as the best number of clusters 
+* 3 proposed 4 as the best number of clusters 
+* 6 proposed 5 as the best number of clusters 
+* 2 proposed 6 as the best number of clusters 
+* 1 proposed 7 as the best number of clusters 
+* 1 proposed 9 as the best number of clusters 
+* 3 proposed 10 as the best number of clusters 
+
+                   ***** Conclusion *****                            
+ 
+* According to the majority rule, the best number of clusters is  2 
+ 
+ 
+******************************************************************* </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-visualization" class="slide level2 smaller">
+<h2>Data &amp; Visualization</h2>
+<div class="cell">
+
+</div>
+
+<img data-src="Slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><ul>
+<li>The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids: k=3 through k=6.</li>
+</ul>
+</section>
+<section id="data-visualization-1" class="slide level2 smaller">
+<h2>Data &amp; Visualization</h2>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>K-means clustering with 4 clusters of sizes 69, 1, 38, 15
+
+Cluster means:
+  SPCompIndexPercentChange CPIPercentChange LongInterestRatePercentChange
+1                0.5091327       0.04409966                     0.1741670
+2               -6.9010521      -1.21471372                    -4.3700644
+3               -0.3859141      -0.53345867                    -0.7321102
+4               -0.9042914       1.22955111                     1.3448485
+  RealEarningsPercentChange CyclicallyAdjPEPercentageChange
+1                 0.1963760                       0.5410223
+2                -2.4270359                      -5.8070446
+3                -0.2155105                      -0.3902915
+4                -0.1955674                      -1.1128277
+  CAPETotalPercentageChange RealTotalBondReturnPercentageChange
+1                 0.5399368                          -0.1757434
+2                -5.7976262                           3.5727109
+3                -0.3852076                           0.8583392
+4                -1.1213416                          -1.6042206
+
+Clustering vector:
+  [1] 1 1 1 3 1 4 1 1 1 3 1 1 1 3 1 3 3 1 3 3 1 3 1 3 3 1 1 3 4 4 3 3 3 1 1 3 3
+ [38] 3 1 1 3 3 1 1 1 1 1 1 1 1 1 3 1 1 1 3 1 1 1 1 1 4 3 3 1 1 1 1 1 4 3 3 3 1
+ [75] 1 1 3 3 3 3 1 3 1 1 1 3 2 3 1 1 1 1 3 1 1 1 1 1 4 1 1 1 1 1 1 4 1 3 4 4 4
+[112] 4 4 4 3 1 4 4 1 3 1 1 3
+
+Within cluster sum of squares by cluster:
+[1] 225.55854   0.00000 115.11444  77.20815
+ (between_SS / total_SS =  51.1 %)
+
+Available components:
+
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      </code></pre>
+</div>
+</div>
+<ul>
+<li><p>Based on the analysis of the output data and visualizations, k=4 was selected</p></li>
+<li><p>Although one cluster had only “1” data point, it was not eliminated as an outlier since stock market traders are faced with extreme events in the stock market, and these shocks should not be ignored considering significant shifts can severely affect portfolios.</p></li>
+</ul>
+</section>
+<section id="statistical-modeling" class="slide level2 smaller">
+<h2>Statistical Modeling</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Cluster 1</a></li><li><a href="#tabset-3-2">Cluster 2</a></li><li><a href="#tabset-3-3">Cluster 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<ul>
+<li><p>Moderate increase of S&amp;P 500 with cluster mean ≈ 0.51</p></li>
+<li><p>Slight increase in CPI ≈ 0.04 (a metric to reflect inflation)</p></li>
+<li><p>Small increase in long interest rate ≈ 0.17 (Federal Reserve responds to increasing inflation)</p></li>
+<li><p>Small increase in real earnings ≈ 0.20</p></li>
+<li><p>Significant increase in CAPE ≈ 0.54 (a positive predictor for market valuation increase)</p></li>
+<li><p>Small decrease in total bond return ≈ -0.18 (investors often move assets out of fixed income into stocks)</p></li>
+</ul>
+</div>
+<div id="tabset-3-2">
+<ul>
+<li><p>Only contained one data point showing a nearly 7 standard deviation decrease from the mean indicating a market crash</p></li>
+<li><p>Multi standard deviation decrease in:</p>
+<ul>
+<li><p>Consumer price index (deflation)</p></li>
+<li><p>Long interest rates (the Federal Reserve rapidly cutting interest rates)</p></li>
+<li><p>Real earnings and CAPE</p></li>
+</ul></li>
+<li><p>Total bond returns significantly increased (consistent with traders moving money out of a crashing stock market into the safe haven of bonds)</p></li>
+</ul>
+</div>
+<div id="tabset-3-3">
+<ul>
+<li><p>Significant decline in the stock market ≈ -0.90</p></li>
+<li><p>Significant increase in consumer price index ≈ 1.23 (inflation)</p></li>
+<li><p>Significant long interest rate increase ≈ 1.34</p></li>
+<li><p>Small decline in real earnings ≈ -0.20</p></li>
+<li><p>Significant decline in CAPE ≈ -1.12</p></li>
+<li><p>Significant decline in total bond return of ≈ -1.60</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="slide level2 smaller">
+<h2>Conclusion</h2>
+<ul>
+<li><p>K-means provided correlating metrics that a trader could potentially use to reap better gains when investing in the S&amp;P 500</p></li>
+<li><p>Traders could use K-means as a signal to buy and sell the S&amp;P 500</p></li>
+<li><p>Monitor long interest rate, consumer price index, earnings, bond returns, and CAPE ratios to optimize a portfolio</p></li>
+<li><p>Combining K-means with other statistical tools, like regression analysis, could serve as beneficial predictors of the market</p></li>
+<li><p>The statistician must be judicious when determining the number of clusters</p></li>
+</ul>
 <div class="footer footer-default">
 
 </div>
