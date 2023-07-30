@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-07-26">
+<meta name="dcterms.date" content="2023-07-29">
 
 <title>K-means Clustering Using Stocks Data</title>
 <style>
@@ -147,7 +147,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 26, 2023</p>
+      <p class="date">July 29, 2023</p>
     </div>
   </div>
     
@@ -156,10 +156,11 @@ div.csl-indent {
 
 </header>
 
+<p><a href="Slides.html">Slides</a></p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Through the use of data mining technology, large amounts of complex financial data can be analyzed. K-means clustering (KMC) is an algorithm that can be used for potentially maximizing profit, or reducing risk, when investing in company stocks or indexes <span class="citation" data-cites="momeni2015clustering">(<a href="#ref-momeni2015clustering" role="doc-biblioref">Momeni, Mohseni, and Soofi 2015</a>)</span>. Using KMC, stock data can be grouped together in accordance with predetermined criteria to find similarity, dissimilarity, and structure. KMC can also be used to classify financial features according to maximum and minimum similarity <span class="citation" data-cites="zuhroh2021banking">(<a href="#ref-zuhroh2021banking" role="doc-biblioref">Zuhroh, Rofik, and Echchabi 2021</a>)</span>. Clustering algorithms, such as the K-means clustering (KMC) algorithm, have gained attention as valuable tools for aiding investment decision-making. However, there are some shortcomings to the method including the determination of the number of ‘k clusters’, different distance calculation methods, and the problem of local extremum <span class="citation" data-cites="fang2021research">(<a href="#ref-fang2021research" role="doc-biblioref">Fang and Chiao 2021</a>)</span>.</p>
-<p>KMC is a version of unsupervised machine learning unsupervised machine learning utilizing algorithms to analyze and cluster datasets that are unlabeled <span class="citation" data-cites="malik2019applied">(<a href="#ref-malik2019applied" role="doc-biblioref">Malik and Tuckfield 2019</a>)</span>. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. <span class="citation" data-cites="Figure1">(<a href="#ref-Figure1" role="doc-biblioref"><span>“<span>Figure 1:</span> KMC Algorith,”</span> n.d.</a>)</span> below shows a visual representation of k-means. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:</p>
+<p>KMC is a version of unsupervised machine learning utilizing algorithms to analyze and cluster datasets that are unlabeled <span class="citation" data-cites="malik2019applied">(<a href="#ref-malik2019applied" role="doc-biblioref">Malik and Tuckfield 2019</a>)</span>. In this case, K-means clustering would be considered an unsupervised learning method where similar data points will be assembled into groups of unlabeled data . It groups similar unlabled data by looking at the average distance between the objects in each group which is known as the centroid and the K groups. <span class="citation" data-cites="Figure1">(<a href="#ref-Figure1" role="doc-biblioref"><span>“<span>Figure 1:</span> KMC Algorith,”</span> n.d.</a>)</span> below shows a visual representation of k-means. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>. In order to weigh variables one process that can be used is the ‘Analytic Hierarchal Process’. The stages of the KMC algorithm were as follows:</p>
 <ol type="1">
 <li><p>Initial stage that partitioned the objects randomly into ‘k’ clusters.</p></li>
 <li><p>The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.</p></li>
@@ -190,7 +191,7 @@ div.csl-indent {
 <li><p>Plot the SSE on the x axis number of clusters, while on the y axis will show the SSE</p></li>
 <li><p>Once you plot the results will show in an elbow shape, the point found in the elbow shows SSE decreasing rapidly. That point is considered the optimal cluster number.</p></li>
 </ol>
-<p>Silhouette Method – The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters <span class="citation" data-cites="ossareh2021cognitive">(<a href="#ref-ossareh2021cognitive" role="doc-biblioref">Ossareh, Pourjafar, and Kopczewski 2021</a>)</span>.</p>
+<p>Silhouette Method - The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters <span class="citation" data-cites="ossareh2021cognitive">(<a href="#ref-ossareh2021cognitive" role="doc-biblioref">Ossareh, Pourjafar, and Kopczewski 2021</a>)</span>.</p>
 <p>Gap Statistic Method - The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number. <span class="math display">\[
 G(k) = E_n(\log(W_k)) - \log(W_k)
 \]</span></p>

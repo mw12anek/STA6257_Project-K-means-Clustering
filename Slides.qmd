@@ -4,20 +4,53 @@ author: "Michael Wanek, Woodny Dorceans"
 date: '`r Sys.Date()`'
 format: revealjs
 course: STA 6257 - Advance Statistical Modeling
-bibliography: references.bib # file contains bibtex for references
-#always_allow_html: true # this allows to get PDF with HTML features
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+KMC is a version of unsupervised machine learning utilizing algorithms to analyze and cluster data-sets that are unlabeled. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group.
 
-## Bullets
+## K-Means Process
 
-When you click the **Render** button a document will be generated that includes:
+#### The stages of the KMC algorithm were as follows:
 
--   Content authored with markdown
--   Output from executable code
+1\. Initial stage that partitioned the objects randomly into 'k' clusters.
+
+2\. The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.
+
+3\. The improvement stage where objects were assigned to the cluster with the nearest center.
+
+4\. The stop stage which was a process that continued until no object move clusters or the objective function value doesn't reduce.
+
+![K-Means Cluster](Figure%201.png){fig-align="center"}
+
+### K-Means Limitations
+
+-   Determination of the number of 'k clusters',
+
+-   Different distance calculation methods
+
+-   Problem of local extremum.
+
+-   Inability to use all types of data with KMC
+
+## Methods
+
+## Elbow
+
+The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE
+
+## Silhouette
+
+The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters
+
+## Gap Statistic
+
+The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number.
+
+### Euclidean Distance
+
+Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it's initial cluster. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.
 
 ## Code
 
@@ -25,4 +58,6 @@ When you click the **Render** button a presentation will be generated that inclu
 
 ```{r}
 1 + 1
+
+
 ```

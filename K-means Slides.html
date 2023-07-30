@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="Slides_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Slides_files/libs/quarto-html/tabby.min.js"></script>
-<script src="Slides_files/libs/quarto-html/popper.min.js"></script>
-<script src="Slides_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="Slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="Slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="K-means Slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="K-means Slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="K-means Slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="K-means Slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="K-means Slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="K-means Slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="K-means Slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="Michael Wanek, Woodny Dorceans">
-  <meta name="dcterms.date" content="2023-07-29">
+  <meta name="dcterms.date" content="2023-07-26">
   <title>K-means Clustering Using Stocks Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Slides_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="Slides_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="K-means Slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="K-means Slides_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,11 +30,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="Slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="Slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="Slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="K-means Slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="K-means Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="K-means Slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="K-means Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="K-means Slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -327,45 +327,20 @@
 <section id="title-slide" class="center">
   <h1 class="title">K-means Clustering Using Stocks Data</h1>
   <p class="author">Michael Wanek, Woodny Dorceans</p>
-  <p class="date">2023-07-29</p>
+  <p class="date">2023-07-26</p>
 </section>
 
-<section id="introduction" class="slide level2">
-<h2>Introduction</h2>
-<p>KMC is a version of unsupervised machine learning utilizing algorithms to analyze and cluster data-sets that are unlabeled. K-means measures the distance between each objects and centroid and is then assigned to the correct groups until all objects have a group.</p>
+<section id="quarto" class="slide level2">
+<h2>Quarto</h2>
+<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
 </section>
-<section id="k-means-process" class="slide level2">
-<h2>K-Means Process</h2>
-<h4 id="the-stages-of-the-kmc-algorithm-were-as-follows">The stages of the KMC algorithm were as follows:</h4>
-<p>1. Initial stage that partitioned the objects randomly into ‘k’ clusters.</p>
-<p>2. The repetition stage by calculating the center of each cluster using the mean of the data, compute the squared Euclidean distance from each object to each cluster, and compute the squared error function.</p>
-<p>3. The improvement stage where objects were assigned to the cluster with the nearest center.</p>
-<p>4. The stop stage which was a process that continued until no object move clusters or the objective function value doesn’t reduce.</p>
-
-<img data-src="Figure%201.png" class="r-stretch quarto-figure-center"><p class="caption">K-Means Cluster</p><h3 id="k-means-limitations">K-Means Limitations</h3>
+<section id="bullets" class="slide level2">
+<h2>Bullets</h2>
+<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
 <ul>
-<li><p>Determination of the number of ‘k clusters’,</p></li>
-<li><p>Different distance calculation methods</p></li>
-<li><p>Problem of local extremum.</p></li>
-<li><p>Inability to use all types of data with KMC</p></li>
+<li>Content authored with markdown</li>
+<li>Output from executable code</li>
 </ul>
-</section>
-<section id="methods" class="slide level2">
-<h2>Methods</h2>
-</section>
-<section id="elbow" class="slide level2">
-<h2>Elbow</h2>
-<p>The Elbow Method is used to find a good number of cluster by looking at a point where the sum of squares error (SSE) decreases rapidly. SSE looks at how far each point is from the center of its cluster, essentially the points should be close together to minimize the SSE</p>
-</section>
-<section id="silhouette" class="slide level2">
-<h2>Silhouette</h2>
-<p>The Silhouette method is used to determine how well data points fits into their cluster. It does so by looking at how close the data point is to its own cluster compared to the other clusters</p>
-</section>
-<section id="gap-statistic" class="slide level2">
-<h2>Gap Statistic</h2>
-<p>The Gap Statistic method is used to find the k value with the largest gap to help compare the within-cluster dispersion. Using this method along with the other 2 we can determine which is best to select the optimal cluster number.</p>
-<h3 id="euclidean-distance">Euclidean Distance</h3>
-<p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.</p>
 </section>
 <section id="code" class="slide level2">
 <h2>Code</h2>
@@ -383,19 +358,19 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="Slides_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="Slides_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="Slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="K-means Slides_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
