@@ -4,6 +4,7 @@ author: "Michael Wanek, Woodny Dorceans"
 date: '`r Sys.Date()`'
 format: revealjs
 course: STA 6257 - Advance Statistical Modeling
+scrollable: true
 bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
 ---
