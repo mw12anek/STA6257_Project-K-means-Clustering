@@ -10,6 +10,7 @@ bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
 ---
 
+
 [Slides](Slides.html)
 
 ## Introduction
@@ -26,9 +27,11 @@ KMC is a version of unsupervised machine learning utilizing algorithms to analyz
 
 4.  The stop stage which was a process that continued until no object move clusters or the objective function value doesn't reduce [@momeni2015clustering].
 
+
 ```{r pressure, echo=FALSE, fig.cap="Figure 1: Source: (https://www.javatpoint.com/k-means-clustering-algorithm-in-machine-learning)", out.width = '80%'}
 knitr::include_graphics("Figure 1.png")
 ```
+
 
 Stocks data can be predicted using both qualititative and quantitative company information, some studies discovered that qualitative information does a better job at predicting stocks. Qualitative data uses information such as how the company performs versus quantitative data using numbers such as a company assets [@babu2012clustering]. Using KMC it can help stock buyers or sellers understand the stock market pattern. K-means clustering when combined with regression method also helps with predicting stock future stock prices. This allows users to know when the best time to get in the market before a price increase/decrease, which in turn, tells sellers to hold or to sell their stocks [@bini2016clustering]. KMC does have limitations including the determination of the number of 'k clusters', different distance calculation methods, and the problem of local extremum [@fang2021research]. Other types of limitations include the inability to use all types of data with KMC [@ahmed2020k].
 
@@ -81,6 +84,7 @@ $$ The CAPE ratio has the purported advantage of measuring valuation over a ten-
 
 The packages relevant to the project that were needed included factoextra(), NbClust(), and Cluster(). For example, factoextra can run the k-means algorithm along with visualizations. Also, NbClust() and Cluster() can assist in determining the optimal number of clusters and centroids.
 
+
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
 library(readr)
@@ -98,7 +102,9 @@ df<- read_csv("SPDatasetLAST.csv")
 head(df)
 ```
 
+
 Scale() assists with standardizing the data so that it is comparable using "z-scores".
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # standardize the data having a standard normal with a mean of 0 and a standard deviation of 1
@@ -108,7 +114,9 @@ head(df)
 kable(head(df))
 ```
 
+
 The Elbow method was used to help determine the optimal number of clusters using the coded algorithm fviz_nbclust(). The elbow method used an unsupervised algorithm approach from a calculation known as the within-cluster sum of squares (WCSS) method.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #estimate the optimal number of clusters according to the number of bends (elbow method)
@@ -117,7 +125,9 @@ fviz_nbclust(df, kmeans, method = "wss") +
   labs(subtitle = "Elbow method")
 ```
 
+
 The Silhouette method is an unsupervised method to determine the optimum number of clusters. It uses a mathematical formula to measure how well a data point fits within a cluster through the Silhouette coefficient.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #estimate the optimal number of clusters Silhouette method
@@ -125,7 +135,9 @@ fviz_nbclust(df, kmeans, method = "silhouette")+
   labs(subtitle = "Silhouette method")
 ```
 
+
 The "Gap statistic method" is another algorithm that can be used to identify the optimum number of clusters. The method standardizes the data using a logarithmic function.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #estimate the optimal number of clusters with the 'gap statistics' method
@@ -133,7 +145,9 @@ fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
   labs(subtitle = "Gap statistic method")
 ```
 
+
 The coded algorithm NbClust() uses 30 different methods to help determine the optimal number of clusters. The selected distance method was "Euclidean" which uses essentially Pythagorean theorem to find the relative distances between the data points.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
@@ -141,7 +155,9 @@ nb <- NbClust(df, distance = "euclidean", min.nc = 2,
         max.nc = 10, method = "kmeans")
 ```
 
+
 The K-means algorithm coding: "K-means()" was used for differing number of centroids (k=3 through k=6) and analyzed for relevance.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #test kmeans cluster for k=3, k=4 and k=5 for comparison
@@ -151,7 +167,9 @@ k5 <- kmeans(df, centers = 5, nstart = 25)
 k6 <- kmeans(df, centers = 6, nstart = 25)
 ```
 
+
 The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids. In this case, k=3 through k=6.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # plots to compare
@@ -162,7 +180,9 @@ p4 <- fviz_cluster(k6, geom = "point",  data = df) + ggtitle("k = 6")
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 ```
 
+
 The output of K-means() was assigned to different data frames (final3 through final6) for further analyses and selection of the optimal number of clusters.
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
@@ -173,12 +193,15 @@ final5 <- kmeans(df, 5, nstart = 25)
 final6 <- kmeans(df, 6, nstart = 25)
 ```
 
+
 Based on the analysis of the output data and visualizations, k=4 was selected and the results are displayed using the print().
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 #view the kmeans clustering including: cluster, centers, total sum of squares, vector of within-cluster sum squares, total within-sum of squares, the between-cluster sum of squares, and number of points in each cluster
 print(final4)
 ```
+
 
 The analysis made use of several R packages including the following:
 
@@ -205,3 +228,4 @@ The cluster means provided correlating metrics that a trader could potentially u
 ### Conclusion
 
 For stock market traders and speculators, predicting market moves within the S&P 500 can significantly improve portfolio performance. Although there are many statistical methods that can assist in identifying buy and sell signals within the stock market, the K-means unsupervised learning algorithm can be helpful in recognizing metrics that traders can consider when managing their portfolio. Of the metrics available from the dataset, it was concluded that the composite index, consumer price index, long-term interest rates, real earnings, cyclically adjusted price to earnings ratio (adjusted and total), and real total bond return were the most germane in the context of K-means clustering. Determining the optimum number of clusters was difficult due to an inconsistency amongst the various clustering algorithms; therefore, a combination of visualization, results from the algorithms, and an understanding of market trends and predictions assisted in concluding that 4 clusters was the ideal. The results demonstrated that changes in the S&P 500 composite index moved in correlation with corporate earnings and price changes as well as macroeconomic indicators as expected based on market past performance and economic theory. Therefore, a speculator should take into consideration the aforementioned metrics identified through K-means when determining buy and sell triggers as it relates to the S&P 500 index of stocks.
+
