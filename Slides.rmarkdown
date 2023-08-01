@@ -9,6 +9,7 @@ bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
 ---
 
+
 ## Introduction
 
 -   KMC unsupervised machine learning
@@ -91,6 +92,7 @@ $$
 
 ## Data and Visualization {.smaller}
 
+
 ```{r}
 # loading packages 
 library(readr)
@@ -113,14 +115,17 @@ head(df)
 df<-scale(df)
 ```
 
+
 -   R packages relevant to the project included factoextra(), NbClust(), and Cluster().
 
 -   Scale() in R was used standardize (normalize) the data for relevant comparison.
+
 
 ```{r}
 kable(head(df))
 
 ```
+
 
 ## Data and Visualization (Methods) {.smaller}
 
@@ -128,6 +133,7 @@ kable(head(df))
 ## Elbow
 
 -   Elbow Method to determine the optimal number of clusters using fviz_nbclust().
+
 
 ```{r}
 #estimate the optimal number of clusters according to the number of bends (elbow method)
@@ -137,9 +143,11 @@ fviz_nbclust(df, kmeans, method = "wss") +
 
 ```
 
+
 ## Silhouette
 
 -   Silhouette Method to determine the optimum number of clusters; it measures how well a data point fits within a cluster using the Silhouette Coefficient.
+
 
 ```{r}
 #estimate the optimal number of clusters Silhouette method
@@ -148,9 +156,11 @@ fviz_nbclust(df, kmeans, method = "silhouette")+
 
 ```
 
+
 ## Gap Statistic
 
 -   Gap Statistic Method to identify the optimum number of clusters using a logarithmic function.
+
 
 ```{r}
 #estimate the optimal number of clusters with the 'gap statistics' method
@@ -159,9 +169,11 @@ fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
 
 ```
 
+
 ## NbClust
 
 -   NbClust() uses 30 different methods determine the optimal number of clusters using the "Euclidean" algorithm (Pythagorean Theorem) to find the relative distances between the data points.
+
 
 ```{r}
 #NbClust provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results
@@ -169,9 +181,11 @@ nb <- NbClust(df, distance = "euclidean", min.nc = 2,
         max.nc = 10, method = "kmeans")
 
 ```
+
 :::
 
 ## Data & Visualization {.smaller}
+
 
 ```{r}
 #test kmeans cluster for k=3, k=4 and k=5 for comparison
@@ -192,9 +206,11 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ```
 
+
 -   The coded algorithm fviz_cluster() plots the clusters using the selected number of centroids: k=3 through k=6.
 
 ## Data & Visualization {.smaller}
+
 
 ```{r}
 #Cluster analysis, k=3, nstart = 25 will generate 25 initial configurations
@@ -211,6 +227,7 @@ final6 <- kmeans(df, 6, nstart = 25)
 print(final4)
 
 ```
+
 
 -   Based on the analysis of the output data and visualizations, k=4 was selected
 
@@ -273,3 +290,4 @@ print(final4)
 -   Combining K-means with other statistical tools, like regression analysis, could serve as beneficial predictors of the market
 
 -   The statistician must be judicious when determining the number of clusters
+
