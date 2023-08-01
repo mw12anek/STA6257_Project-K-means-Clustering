@@ -35,8 +35,6 @@ bibliography: references.bib # file contains bibtex for references
 
 -   Different distance calculation methods
 
--   Problem of local extremum.
-
 -   Inability to use all types of data with KMC
 
 ## Methods
