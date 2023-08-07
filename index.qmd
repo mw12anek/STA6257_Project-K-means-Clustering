@@ -69,6 +69,9 @@ Calculating the distance for KMC can be achieved by a few different method. By d
 $$
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
 $$
+**K-means Without Time Series Analysis**
+
+K-means was used as a pattern clustering technique to gain important information related to the stock market- specifically the S&P 500. Using the clustering algorithm, associated metrics are grouped together in subsets to analyze and build portfolios [@nanda2010clustering]. Time series does NOT have to be used in the analysis; instead, returns for varying periods can be used such as for short term: 1 day, 1 week, 30 days; or long term such as 3 months, 6 months, or 1 year [@nanda2010clustering].  For this paper, returns where considered on a monthly basis (short term).
 
 
 ## Analysis and Results

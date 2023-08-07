@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Wanek, Woodny Dorceans">
-<meta name="dcterms.date" content="2023-08-01">
+<meta name="dcterms.date" content="2023-08-06">
 
 <title>K-means Clustering Using Stocks Data</title>
 <style>
@@ -147,7 +147,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2023</p>
+      <p class="date">August 6, 2023</p>
     </div>
   </div>
     
@@ -202,7 +202,8 @@ W_k = \frac{1}{P} \sum_{b=1}^{P} \log(W^*_{kb}) \approx \frac{1}{P} \sum_{b=1}^{
 <p>Calculating the distance for KMC can be achieved by a few different method. By default Euclidean distance, is used to calculate the distance between a point and it’s initial cluster <span class="citation" data-cites="yedla2010enhancing">(<a href="#ref-yedla2010enhancing" role="doc-biblioref">Yedla, Pathakota, and Srinivasa 2010</a>)</span>. The Euclidean distance uses the Pythagorean theorem; however, not only in two dimensions, but with as many dimensions as needed.</p>
 <p><span class="math display">\[
 d_{euc}(x, y) = \sqrt{\sum_{i = 1}^{n}{(x_i - y_i)^2}}
-\]</span></p>
+\]</span> <strong>K-means Without Time Series Analysis</strong></p>
+<p>K-means was used as a pattern clustering technique to gain important information related to the stock market- specifically the S&amp;P 500. Using the clustering algorithm, associated metrics are grouped together in subsets to analyze and build portfolios <span class="citation" data-cites="nanda2010clustering">(<a href="#ref-nanda2010clustering" role="doc-biblioref">Nanda, Mahanty, and Tiwari 2010</a>)</span>. Time series does NOT have to be used in the analysis; instead, returns for varying periods can be used such as for short term: 1 day, 1 week, 30 days; or long term such as 3 months, 6 months, or 1 year <span class="citation" data-cites="nanda2010clustering">(<a href="#ref-nanda2010clustering" role="doc-biblioref">Nanda, Mahanty, and Tiwari 2010</a>)</span>. For this paper, returns where considered on a monthly basis (short term).</p>
 </section>
 <section id="analysis-and-results" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h2>
@@ -577,6 +578,9 @@ Malik, Alok, and Bradford Tuckfield. 2019. <em>Applied Unsupervised Learning wit
 </div>
 <div id="ref-momeni2015clustering" class="csl-entry" role="doc-biblioentry">
 Momeni, Mansoor, Maryam Mohseni, and Mansour Soofi. 2015. <span>“Clustering Stock Market Companies via k-Means Algorithm.”</span> <em>Kuwait Chapter of Arabian Journal of Business and Management Review</em> 33 (2578): 1–10.
+</div>
+<div id="ref-nanda2010clustering" class="csl-entry" role="doc-biblioentry">
+Nanda, SR, Biswajit Mahanty, and MK Tiwari. 2010. <span>“Clustering Indian Stock Market Data for Portfolio Management.”</span> <em>Expert Systems with Applications</em> 37 (12): 8793–98.
 </div>
 <div id="ref-ossareh2021cognitive" class="csl-entry" role="doc-biblioentry">
 Ossareh, Adele, Mohammad Saeed Pourjafar, and Tomasz Kopczewski. 2021. <span>“Cognitive Biases on the Iran Stock Exchange: Unsupervised Learning Approach to Examining Feature Bundles in Investors’ Portfolios.”</span> <em>Applied Sciences</em> 11 (22): 10916.
